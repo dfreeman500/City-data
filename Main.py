@@ -40,7 +40,7 @@ while True:
     if menuChoice == "2" :
         b.temperature(city)
     if menuChoice == "3":
-        print("Show all")
+        print("Show all of the info")
 
     if menuChoice.lower() == "exit":
         break
