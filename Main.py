@@ -26,7 +26,7 @@ while True:
     menuChoice = input("""
         You have chosen: {}
         1.) Type 1 to learn about another city, state
-        2.) Type 2 see the weather in {}
+        2.) Type 2 see the Current Temperature in {}
         3.) Type 3 to see all of the data for {}      
             or 
         Type "exit" to exit
@@ -35,13 +35,12 @@ while True:
 
     if menuChoice == "1":
         city = chooseCity()
+        b = CityInfo(city)
+
     if menuChoice == "2" :
-        print("Show the weather")
-        b.printCity(city)
-        time.sleep(1)
+        b.temperature(city)
     if menuChoice == "3":
         print("Show all")
-        time.sleep(1)
 
     if menuChoice.lower() == "exit":
         break
