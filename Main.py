@@ -1,57 +1,49 @@
 from City import CityInfo
 # import os
 import time
-
+from Weather import getWeather
 cityList = [] #keeps track of userinput/cities for history or comparison purposes
 
 print("""
-        Welcome to the City-data app. Find out information about a city (ex: Louisville, KY)
+        Welcome to the City-data app. Find out information about a city (ex: Louisville, Kentucky)
         
 
 """)
 
 
-def chooseCity():
-    cityRequest = input("Enter city, state (ex: Louisville, KY) or 'exit': ")
-    if cityRequest == "":
-        print("please enter in city, state format (ex: Louisville, KY)")
-        chooseCity()
-    return cityRequest
+def chooseCity(menuChoice):
+    responses = getWeather(menuChoice)
+    return responses  #returns [ response.status_code, cityState, response.json()]
 
-city = chooseCity()
-b = CityInfo(city)
+
+
+
+
 while True:
     # os.system('cls||clear')
 
+
     menuChoice = input("""
-        You have chosen: {}
-        1.) Type 1 to learn about another city, state
-        2.) Type 2 see the Current Temperature in {}
-        3.) Type 3 to see all of the data for {}      
+
+
+    
+        1.) Enter a city, state to find out information about it
             or 
-        Type "exit" to exit
+        2.) Type 'exit' to exit
 
-        """.format(city, city, city))
-
-    if menuChoice == "1":
-        city = chooseCity()
-        b = CityInfo(city)
-
-    if menuChoice == "2" :
-        b.temperature(city)
-    if menuChoice == "3":
-        print("Show all of the info")
+        """)
 
     if menuChoice.lower() == "exit":
         break
-
-
-
-
     
+    else:
+        cityData = chooseCity(menuChoice)
+        # print(cityData[0])
+        if cityData[0] != 200:
+            print("You entered {} but that wasn't found. Please try again. Please use the format of 'Louisville, Kentucky'".format(cityData[1]))
 
-    
-
-
+        else:
+            b = CityInfo(cityState = cityData[1], weather = cityData[2]) ## creates an instance of CityInfo class passing in the cityRequest
+            b.weatherInfo(cityState = cityData[1])
 
 

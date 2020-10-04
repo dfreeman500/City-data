@@ -2,17 +2,19 @@ import api
 import requests
 
 class CityInfo:
-    def __init__(self, cityState):
+    def __init__(self, cityState, weather):
         self.cityState = cityState
-        self.response = requests.get("https://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid={}".format(self.cityState, api.openWeatherApi))
+        self.weather = weather
+
 
     
-    def printCity(self, cityState):
-        print("You wish to learn more about", cityState)
+    # def printCity(self, cityState):
+    #     print("You wish to learn more about", cityState)
 
 
    
-    def temperature(self, cityState):
-        print("The temperature in {} is {} degrees Farenheit.".format(cityState, self.response.json()["main"]["temp"]))
-        print(self.response.status_code)
+    def weatherInfo(self, cityState):
+        # print(self.weather)
+        print("The temperature in {} is {} degrees Fahrenheit but it feels like {}.".format(cityState, self.weather["main"]["temp"],self.weather["main"]["feels_like"] ))
+        # print(self.response.status_code)
 
