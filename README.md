@@ -16,3 +16,4 @@ bs4 == 0.0.1
     * better scraping
     * better use of files and classes to logically stream line app
     * save city data to variable and export to csv
+    * GUI
