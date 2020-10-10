@@ -12,7 +12,7 @@ bs4 == 0.0.1
 
 
 * Future additions: 
-better error handling for wikipedia
-better scraping
-better use of files and classes to logically stream line app
-save city data to variable and export to csv
+    * better error handling for wikipedia
+    * better scraping
+    * better use of files and classes to logically stream line app
+    * save city data to variable and export to csv
