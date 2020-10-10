@@ -19,3 +19,6 @@ This console app allows the user to get data on a city using a variety of APIs a
     * better use of files and classes to logically stream line app
     * save city data to variable and export to csv
     * GUI
+
+    * ability to take zip codes
+    * convert state abbreviations to full state names
