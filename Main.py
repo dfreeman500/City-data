@@ -46,18 +46,20 @@ while True:
             print(x)
     
     else:
-        cityData = chooseCity(menuChoice)
+        cityData = chooseCity(menuChoice.title()) # using .title() helps avoid some errors
         # print(cityData[0])
         if cityData[0] != 200:
             print("You entered {} but that wasn't found. Please try again. Please use the format of 'Louisville, Kentucky'".format(cityData[1]))
 
         else:
-            cityList.append(cityData[1])
-            # print(cityData[2])
-            b = CityInfo(cityState = cityData[1], weather = cityData[2]) ## creates an instance of CityInfo class passing in the cityRequest
-            b.weatherInfo(cityState = cityData[1])
+
             try:
+                # print(cityData[2])
+                b = CityInfo(cityState = cityData[1], weather = cityData[2]) ## creates an instance of CityInfo class passing in the cityRequest
+                b.weatherInfo(cityState = cityData[1])
                 c = getWiki(cityState = cityData[1])
+                cityList.append(cityData[1])
+
             except:
                 print("Error. Well that didn't go as planned...")
 

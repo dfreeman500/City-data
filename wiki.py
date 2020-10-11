@@ -56,12 +56,21 @@ class getWiki:
                 popAreaTest = "pop"
             if re.sub(r'\W+', '', row.text).startswith("Total") and popAreaTest == "pop": # Gets rid of non alpha numeric items
                 print("The total population is", cols[0])
+            if re.sub(r'\W+', '', row.text).startswith("Estimate") and popAreaTest == "pop": # Gets rid of non alpha numeric items
+                print("The total estimated population is", cols[0])
             if re.sub(r'\W+', '', row.text).startswith("Consolidated") and popAreaTest == "pop": # Gets rid of non alpha numeric items
-                print("The total consolidated population is", cols[0])
+                print("The consolidated population is", cols[0])
+            
+            
+             
             if re.sub(r'\W+', '', row.text).startswith("Rank") and popAreaTest == "pop": # Gets rid of non alpha numeric items
-                print("The city's rank is", cols[0])
-            if re.sub(r'\W+', '', row.text).startswith("Density") and popAreaTest == "pop": # Gets rid of non alpha numeric items
+                print("The city's population rank is", cols[0])
+            if re.sub(r'\W+', '', row.text).startswith("Density") and "rank" not in row.text and popAreaTest == "pop": # Gets rid of non alpha numeric items
                 print("The city's population density is", cols[0])
+            
+            if re.sub(r'\W+', '', row.text).startswith("Demonym"): # tells progam it is no longer dealing with pop or area
+                popAreaTest = "dem"
+
 
 
 #Time zone
@@ -83,7 +92,7 @@ class getWiki:
 
             
 #Airports/Transportation
-            if re.sub(r'\W+', '', row.text).startswith("Major"): # Gets rid of non alpha numeric items
+            if re.sub(r'\W+', '', row.text).startswith("MajorAirports"): # Gets rid of non alpha numeric items
                 print("The major airports are", cols[0])
             if re.sub(r'\W+', '', row.text).startswith("Primary"): # Gets rid of non alpha numeric items
                 print("Primary Airport:", cols[0])
