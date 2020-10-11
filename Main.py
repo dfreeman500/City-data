@@ -38,7 +38,7 @@ while True:
 
         """)
 
-    if menuChoice.lower() == "exit":
+    if menuChoice.lower() == "exit" or menuChoice=="3":
         break
 
     if menuChoice == '2':
@@ -53,9 +53,13 @@ while True:
 
         else:
             cityList.append(cityData[1])
+            # print(cityData[2])
             b = CityInfo(cityState = cityData[1], weather = cityData[2]) ## creates an instance of CityInfo class passing in the cityRequest
             b.weatherInfo(cityState = cityData[1])
-            c = getWiki(cityState = cityData[1])
+            try:
+                c = getWiki(cityState = cityData[1])
+            except:
+                print("Error. Well that didn't go as planned...")
 
 
 

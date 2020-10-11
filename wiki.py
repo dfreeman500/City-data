@@ -10,8 +10,9 @@ class getWiki:
         
         # print(self.cityState)
         url = ''.join(['https://en.wikipedia.org/wiki/', self.cityState])
-
+        print("before request")
         r = requests.get(url)
+        print("after request")
         # print(len(r.text))
         # print(r.text)
 
@@ -28,7 +29,7 @@ class getWiki:
 
         # print(table_body)
         rows = table_body.find_all('tr')
-        populationTest = False #Tells the program that we are now in the population section
+        popAreaTest = False #helps the program determine if in the population or area section
 
         for row in rows:
             cols = row.find_all('td')
@@ -36,47 +37,59 @@ class getWiki:
             cols = [item.text.strip() for item in cols]
             data.append([item for item in cols if item]) # Get rid of empty values
 
+#Political,Contact, Names, Extraneous
             if re.sub(r'\W+', '', row.text).startswith("Mayor"): # Gets rid of non alpha numeric items
                 print("The mayor is", cols[0])
-
-
-            if re.sub(r'\W+', '', row.text).startswith("Population"): # Gets rid of non alpha numeric items
-                populationTest = True
-            if re.sub(r'\W+', '', row.text).startswith("Total") and populationTest == True: # Gets rid of non alpha numeric items
-                print("The total population is", cols[0])
-                populationTest = False  #Needs to be last in population group
-
-
-
-            if re.sub(r'\W+', '', row.text).startswith("Time"): # Gets rid of non alpha numeric items
-                print("The Time zone is", cols[0])
-            if re.sub(r'\W+', '', row.text).startswith("Land"): # Gets rid of non alpha numeric items
-                print("The Land area is", cols[0])
-            if re.sub(r'\W+', '', row.text).startswith("Area"): # Gets rid of non alpha numeric items
-                print("The area code is", cols)
-            # if re.sub(r'\W+', '', row.title).startswith("Consolidated city-county"): # Gets rid of non alpha numeric items
-            #     print("The population is", cols[0])
-            if re.sub(r'\W+', '', row.text).startswith("Airport"): # Gets rid of non alpha numeric items
-                print("The airports are", cols[0])
-
-            if re.sub(r'\W+', '', row.text).startswith("Waterways"): # Gets rid of non alpha numeric items
-                print("The waterways are", cols[0])
             if re.sub(r'\W+', '', row.text).startswith("Website"): # Gets rid of non alpha numeric items
                 print("The website is", cols[0])
-            if re.sub(r'\W+', '', row.text).startswith("Motto"): # Gets rid of non alpha numeric items
-                print("The motto is", cols[0])
-            if re.sub(r'\W+', '', row.text).startswith("Elevation"): # Gets rid of non alpha numeric items
-                print("The elevation is", cols[0])
             if re.sub(r'\W+', '', row.text).startswith("Nickname"): # Gets rid of non alpha numeric items
                 print(cols[0])
             if re.sub(r'\W+', '', row.text).startswith("Demonym"): # Gets rid of non alpha numeric items
                 print("Demonym: ", cols[0])
+            if row.text.startswith("Area code"): # Gets rid of non alpha numeric items
+                print("Area Code: ", cols[0])
+            if re.sub(r'\W+', '', row.text).startswith("Motto"): # Gets rid of non alpha numeric items
+                print(cols[0])
+
+#Population
+            if re.sub(r'\W+', '', row.text).startswith("Population"): # Gets rid of non alpha numeric items
+                popAreaTest = "pop"
+            if re.sub(r'\W+', '', row.text).startswith("Total") and popAreaTest == "pop": # Gets rid of non alpha numeric items
+                print("The total population is", cols[0])
+            if re.sub(r'\W+', '', row.text).startswith("Consolidated") and popAreaTest == "pop": # Gets rid of non alpha numeric items
+                print("The total consolidated population is", cols[0])
+            if re.sub(r'\W+', '', row.text).startswith("Rank") and popAreaTest == "pop": # Gets rid of non alpha numeric items
+                print("The city's rank is", cols[0])
+            if re.sub(r'\W+', '', row.text).startswith("Density") and popAreaTest == "pop": # Gets rid of non alpha numeric items
+                print("The city's population density is", cols[0])
+
+
+#Time zone
+            if re.sub(r'\W+', '', row.text).startswith("Time"): # Gets rid of non alpha numeric items
+                print("The Time zone is", cols[0])
+            
+            
+#Geographical
+            if re.sub(r'\W+', '', row.text).startswith("Area"): # Gets rid of non alpha numeric items
+                popAreaTest = "area"
+            if re.sub(r'\W+', '', row.text).startswith("Total") and popAreaTest=="area": # Gets rid of non alpha numeric items
+                print("The Total area is", cols[0])
+            if re.sub(r'\W+', '', row.text).startswith("Land") and popAreaTest=="area": # Gets rid of non alpha numeric items
+                print("The Land area is", cols[0])
+            if re.sub(r'\W+', '', row.text).startswith("Waterways"): # Gets rid of non alpha numeric items
+                print("The waterways are", cols[0])
+            if re.sub(r'\W+', '', row.text).startswith("Elevation"): # Gets rid of non alpha numeric items
+                print("The elevation is", cols[0])
+
+            
+#Airports/Transportation
             if re.sub(r'\W+', '', row.text).startswith("Major"): # Gets rid of non alpha numeric items
                 print("The major airports are", cols[0])
             if re.sub(r'\W+', '', row.text).startswith("Primary"): # Gets rid of non alpha numeric items
                 print("Primary Airport:", cols[0])
             if re.sub(r'\W+', '', row.text).startswith("Secondary"): # Gets rid of non alpha numeric items
                 print("Secondary Airports:", cols[0])
-
+            if re.sub(r'\W+', '', row.text).startswith("Airport"): # Gets rid of non alpha numeric items
+                print("The airports are", cols[0])
             if re.sub(r'\W+', '', row.text).startswith("Rapid"): # Gets rid of non alpha numeric items
                 print("Rapid Transit:", cols[0])               
