@@ -42,6 +42,7 @@ while True:
         break
 
     if menuChoice == '2':
+        print("Here are the cities you've searched and found data on:")
         for x in cityList:
             print(x)
     

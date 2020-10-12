@@ -10,9 +10,9 @@ class getWiki:
         
         # print(self.cityState)
         url = ''.join(['https://en.wikipedia.org/wiki/', self.cityState])
-        print("before request")
+        # print("before request")
         r = requests.get(url)
-        print("after request")
+        # print("after request")
         # print(len(r.text))
         # print(r.text)
 
