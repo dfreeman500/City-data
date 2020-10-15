@@ -29,7 +29,44 @@ class getWiki:
 
         # print(table_body)
         rows = table_body.find_all('tr')
-        popAreaTest = False #helps the program determine if in the population or area section
+        popAreaTest = "other" #helps the program determine if in the population or area section
+
+        Mayor, Website, Nickname, Demonym, Areacode = ["","","","",""] 
+        Motto, Total_Population, Estimated_Population, Consolidated_Population =["","","",""] 
+        Population_Rank, Population_Density, Population_Density_Rank, Total_Land_Area = ["","","",""]    
+        Waterways, Elevation, Major_Airports, Primary_Aiport, Secondary_Airports =["","","","",""] 
+        Airports, Rapid_Transit, Time_Zone  = ["","",""] 
+
+#puts the search term, line to print, header for csv file, and category (for scraping) all in one variable
+        termLineHeader = [ 
+            ["Mayor", "The Mayor is", "Mayor", "other", Mayor],
+            ["Website", "The website is", "Website", "other", Website],
+            ["Nickname", '', "Nickname", "other", Nickname],
+            ["Demonym", "Demonym: ", "Demonym", "other", Demonym],
+            ["Areacode", "Area Code: ", "Area_Code", "areacode", Areacode],
+            ["Motto", '', "Motto", "other", Motto],
+
+            ["Total", "The total population is", "Total_Population", "pop", Total_Population],
+            ["Estimate", "The total estimated population is", "Estimated_Population", "pop", Estimated_Population],
+            ["Consolidated", "The consolidated population is", "Consolidated_Population", "pop", Consolidated_Population],
+            ["Rank", "The city's population rank is ", "Population_Rank", "pop", Population_Rank],
+            ["Density", "The city's population density is", "Population_Density", "pop", Population_Density],
+
+            ["Densityrank", "The city's population density rank is", "Population_Density_Rank", "poprank", Population_Density_Rank],
+
+            # ["Area", "The total area is", "Total_Area", "area"],
+            ["Land", "The total land area is ", "Total_Land_Area", "area", Total_Land_Area],
+            ["Waterways", "The waterways are ", "Waterways", "area", Waterways],
+            ["Elevation", "The elevation is ", "Elevation", "area", Elevation],
+
+            ["MajorAirports", "The major airports are", "Major_Airports", "other", Major_Airports],
+            ["Primary", "Primary Aiport: ", "Primary_Aiport", "other", Primary_Aiport],
+            ["Secondary", "Secondary Airports: ", "Secondary_Airports", "other", Secondary_Airports],
+            ["Airport", "The airports are", "Airports", "other", Airports],
+            ["Rapid", "Rapid Transit:", "Rapid_Transit", "other", Rapid_Transit],
+            ["Time", "The Time zone is ", "Time_Zone", "other", Time_Zone],
+        ] 
+
 
         for row in rows:
             cols = row.find_all('td')
@@ -37,68 +74,27 @@ class getWiki:
             cols = [item.text.strip() for item in cols]
             data.append([item for item in cols if item]) # Get rid of empty values
 
-#Political,Contact, Names, Extraneous
-            if re.sub(r'\W+', '', row.text).startswith("Mayor"): # Gets rid of non alpha numeric items
-                print("The mayor is", cols[0])
-            if re.sub(r'\W+', '', row.text).startswith("Website"): # Gets rid of non alpha numeric items
-                print("The website is", cols[0])
-            if re.sub(r'\W+', '', row.text).startswith("Nickname"): # Gets rid of non alpha numeric items
-                print(cols[0])
-            if re.sub(r'\W+', '', row.text).startswith("Demonym"): # Gets rid of non alpha numeric items
-                print("Demonym: ", cols[0])
-            if row.text.startswith("Area code"): # Gets rid of non alpha numeric items
-                print("Area Code: ", cols[0])
-            if re.sub(r'\W+', '', row.text).startswith("Motto"): # Gets rid of non alpha numeric items
-                print(cols[0])
-
-#Population
-            if re.sub(r'\W+', '', row.text).startswith("Population"): # Gets rid of non alpha numeric items
+            # Change category for scraping
+            if re.sub(r'\W+', '', row.text).startswith("Population"): 
                 popAreaTest = "pop"
-            if re.sub(r'\W+', '', row.text).startswith("Total") and popAreaTest == "pop": # Gets rid of non alpha numeric items
-                print("The total population is", cols[0])
-            if re.sub(r'\W+', '', row.text).startswith("Estimate") and popAreaTest == "pop": # Gets rid of non alpha numeric items
-                print("The total estimated population is", cols[0])
-            if re.sub(r'\W+', '', row.text).startswith("Consolidated") and popAreaTest == "pop": # Gets rid of non alpha numeric items
-                print("The consolidated population is", cols[0])
-            
-            
-             
-            if re.sub(r'\W+', '', row.text).startswith("Rank") and popAreaTest == "pop": # Gets rid of non alpha numeric items
-                print("The city's population rank is", cols[0])
-            if re.sub(r'\W+', '', row.text).startswith("Density") and "rank" not in row.text and popAreaTest == "pop": # Gets rid of non alpha numeric items
-                print("The city's population density is", cols[0])
-            
-            if re.sub(r'\W+', '', row.text).startswith("Demonym"): # tells progam it is no longer dealing with pop or area
-                popAreaTest = "dem"
-
-
-
-#Time zone
-            if re.sub(r'\W+', '', row.text).startswith("Time"): # Gets rid of non alpha numeric items
-                print("The Time zone is", cols[0])
-            
-            
-#Geographical
-            if re.sub(r'\W+', '', row.text).startswith("Area"): # Gets rid of non alpha numeric items
+            if re.sub(r'\W+', '', row.text).startswith("Area"): 
                 popAreaTest = "area"
-            if re.sub(r'\W+', '', row.text).startswith("Total") and popAreaTest=="area": # Gets rid of non alpha numeric items
-                print("The Total area is", cols[0])
-            if re.sub(r'\W+', '', row.text).startswith("Land") and popAreaTest=="area": # Gets rid of non alpha numeric items
-                print("The Land area is", cols[0])
-            if re.sub(r'\W+', '', row.text).startswith("Waterways"): # Gets rid of non alpha numeric items
-                print("The waterways are", cols[0])
-            if re.sub(r'\W+', '', row.text).startswith("Elevation"): # Gets rid of non alpha numeric items
-                print("The elevation is", cols[0])
+            if re.sub(r'\W+', '', row.text).startswith("Densityrank"): 
+                popAreaTest = "poprank"
+            if re.sub(r'\W+', '', row.text).startswith("Areacode"): 
+                popAreaTest = "areacode"
+            if re.sub(r'\W+', '', row.text).startswith("Demonym") or re.sub(r'\W+', '', row.text).startswith("Time") or re.sub(r'\W+', '', row.text).startswith("Elevation") :
+                popAreaTest = "other"
 
-            
-#Airports/Transportation
-            if re.sub(r'\W+', '', row.text).startswith("MajorAirports"): # Gets rid of non alpha numeric items
-                print("The major airports are", cols[0])
-            if re.sub(r'\W+', '', row.text).startswith("Primary"): # Gets rid of non alpha numeric items
-                print("Primary Airport:", cols[0])
-            if re.sub(r'\W+', '', row.text).startswith("Secondary"): # Gets rid of non alpha numeric items
-                print("Secondary Airports:", cols[0])
-            if re.sub(r'\W+', '', row.text).startswith("Airport"): # Gets rid of non alpha numeric items
-                print("The airports are", cols[0])
-            if re.sub(r'\W+', '', row.text).startswith("Rapid"): # Gets rid of non alpha numeric items
-                print("Rapid Transit:", cols[0])               
+            # print(row.text)
+            # print(popAreaTest)
+            for item in termLineHeader:
+                if re.sub(r'\W+', '', row.text).startswith(item[0])  and item[3]==popAreaTest: 
+                    try:
+                        print(item[1], cols[0])
+                        item[4] = cols[0]
+                    except:
+                        print("error")
+
+
+        print(termLineHeader)
