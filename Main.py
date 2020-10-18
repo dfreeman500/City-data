@@ -72,9 +72,9 @@ while True:
                 data_for_columns.extend([i[4] for i in wikiOutput ])
                 # for i in c.returnWikiInfo(cityState = cityData[1]):
                 #     print(i[4])
-                print("")
-                print("names of columns to go into csv file: ", names_of_columns)
-                print("data to go into csv file: ", data_for_columns)
+                # print("")
+                # print("names of columns to go into csv file: ", names_of_columns)
+                # print("data to go into csv file: ", data_for_columns)
                 # names_of_columns = [cityData[1]]
                 firstRun, runMode = csv_export.exportToCSV(names_of_columns, data_for_columns, firstRun, runMode) # runs the csv exporter and gives/gets info on mode and firstRun
 

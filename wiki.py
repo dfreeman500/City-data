@@ -24,13 +24,18 @@ class getWiki:
         # print(soup.title.string)
         # print(soup.a('infobox geography vcard'))
 
-        data = []
+        # data = []
         table = soup.find('table', attrs={'class':'infobox geography vcard'})
+
+
         # print(table)
         table_body = table.find('tbody')
 
+
         # print(table_body)
         rows = table_body.find_all('tr')
+        # rows.strip() #
+
         popAreaTest = "other" #helps the program determine if in the population, area, or other section as search terms are not unique between these areas
 
 
@@ -76,7 +81,12 @@ class getWiki:
             cols = row.find_all('td')
             # print(cols)
             cols = [item.text.strip() for item in cols]
-            data.append([item for item in cols if item]) # Get rid of empty values
+            # print(rows)
+            # print(row)
+            # cols = cols.replace('<br>', '').replace('&nbsp;', '')
+
+            # data.append([item for item in cols if item]) # Get rid of empty values
+            # print("here is cols:", cols)
 
             # Change category for scraping
             if re.sub(r'\W+', '', row.text).startswith("Population"): 
@@ -97,9 +107,15 @@ class getWiki:
                     try:
                         if cols[0] != '': #Only print for info that is present
                             print(item[1], cols[0])
+                        # item[4] = cols[0].replace("&nbsp", "")
+                        # print()
+                        # # rows.replace_with(strippedText)
                         item[4] = cols[0]
+
                     except:
                         print("error") # add better error message
-
-        # print(termLineHeader)
+        print()
+        print("This is the termLineHeader array: ")
+        for line in enumerate(termLineHeader):
+            print(line)
         return termLineHeader
