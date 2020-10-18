@@ -7,7 +7,9 @@ class getWiki:
     def __init__(self, cityState):
         self.cityState = cityState
 
-        
+    def returnWikiInfo(self, cityState):
+        self.cityState = cityState
+
         # print(self.cityState)
         url = ''.join(['https://en.wikipedia.org/wiki/', self.cityState])
         # print("before request")
@@ -29,15 +31,17 @@ class getWiki:
 
         # print(table_body)
         rows = table_body.find_all('tr')
-        popAreaTest = "other" #helps the program determine if in the population or area section
+        popAreaTest = "other" #helps the program determine if in the population, area, or other section as search terms are not unique between these areas
 
+
+        # Instantiates variables that will be used in termLineHeader
         Mayor, Website, Nickname, Demonym, Areacode = ["","","","",""] 
         Motto, Total_Population, Estimated_Population, Consolidated_Population =["","","",""] 
         Population_Rank, Population_Density, Population_Density_Rank, Total_Land_Area = ["","","",""]    
         Waterways, Elevation, Major_Airports, Primary_Aiport, Secondary_Airports =["","","","",""] 
         Airports, Rapid_Transit, Time_Zone  = ["","",""] 
 
-#puts the search term, line to print, header for csv file, and category (for scraping) all in one variable
+        #Each list in array has: search term, line to print, header for csv file, category (for scraping), returned info to store in variable
         termLineHeader = [ 
             ["Mayor", "The Mayor is", "Mayor", "other", Mayor],
             ["Website", "The website is", "Website", "other", Website],
@@ -54,7 +58,7 @@ class getWiki:
 
             ["Densityrank", "The city's population density rank is", "Population_Density_Rank", "poprank", Population_Density_Rank],
 
-            # ["Area", "The total area is", "Total_Area", "area"],
+            # ["Area", "The total area is", "Total_Area", "area", Total_Area],
             ["Land", "The total land area is ", "Total_Land_Area", "area", Total_Land_Area],
             ["Waterways", "The waterways are ", "Waterways", "area", Waterways],
             ["Elevation", "The elevation is ", "Elevation", "area", Elevation],
@@ -91,10 +95,11 @@ class getWiki:
             for item in termLineHeader:
                 if re.sub(r'\W+', '', row.text).startswith(item[0])  and item[3]==popAreaTest: 
                     try:
-                        print(item[1], cols[0])
+                        if cols[0] != '': #Only print for info that is present
+                            print(item[1], cols[0])
                         item[4] = cols[0]
                     except:
-                        print("error")
+                        print("error") # add better error message
 
-
-        print(termLineHeader)
+        # print(termLineHeader)
+        return termLineHeader
