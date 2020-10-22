@@ -10,35 +10,6 @@ class getWiki:
     def returnWikiInfo(self, cityState):
         self.cityState = cityState
 
-        # print(self.cityState)
-        url = ''.join(['https://en.wikipedia.org/wiki/', self.cityState])
-        # print("before request")
-        r = requests.get(url)
-        # print("after request")
-        # print(len(r.text))
-        # print(r.text)
-
-        soup = BeautifulSoup(r.text, features='lxml')
-        print(url)
-        # print(soup.title)
-        # print(soup.title.string)
-        # print(soup.a('infobox geography vcard'))
-
-        # data = []
-        table = soup.find('table', attrs={'class':'infobox geography vcard'})
-
-
-        # print(table)
-        table_body = table.find('tbody')
-
-
-        # print(table_body)
-        rows = table_body.find_all('tr')
-        # rows.strip() #
-
-        popAreaTest = "other" #helps the program determine if in the population, area, or other section as search terms are not unique between these areas
-
-
         # Instantiates variables that will be used in termLineHeader
         Mayor, Website, Nickname, Demonym, Areacode = ["","","","",""] 
         Motto, Total_Population, Estimated_Population, Consolidated_Population =["","","",""] 
@@ -46,7 +17,7 @@ class getWiki:
         Waterways, Elevation, Major_Airports, Primary_Aiport, Secondary_Airports =["","","","",""] 
         Airports, Rapid_Transit, Time_Zone  = ["","",""] 
 
-        #Each list in array has: search term, line to print, header for csv file, category (for scraping), returned info to store in variable
+        #Each list in array has: search (1)TERM, (2)LINE to print, (3)HEADER for csv file, (4)CATEGORY - for scraping, (5)VARIABLE to store scraped info
         termLineHeader = [ 
             ["Mayor", "The Mayor is", "Mayor", "other", Mayor],
             ["Website", "The website is", "Website", "other", Website],
@@ -76,46 +47,40 @@ class getWiki:
             ["Time", "The Time zone is ", "Time_Zone", "other", Time_Zone],
         ] 
 
+        #category and otherMembers - help the program determine if in the population, area, or other section as search terms are not unique between these areas
+        category = "other" 
+        otherMembers = ["Mayor","Website","Nickname","Demonym","Motto","MajorAirports","Primary","Secondary", "Airport", "Rapid", "Time"]
+        
 
-        for row in rows:
-            cols = row.find_all('td')
-            # print(cols)
-            cols = [item.text.strip() for item in cols]
-            # print(rows)
-            # print(row)
-            # cols = cols.replace('<br>', '').replace('&nbsp;', '')
+        url = ''.join(['https://en.wikipedia.org/wiki/', self.cityState])
+        r = requests.get(url)
+        soup = BeautifulSoup(r.text, features='lxml')
+        print(url)
+        for row in soup.table.find_all('tr')[1:]: #finds table rows
+            try:
+                #This section checks the beginning portion of the row to determine what category to set
+                if re.sub(r'\W+', '', row.text).startswith("Population"): 
+                    category = "pop"
+                if re.sub(r'\W+', '', row.text).startswith("Area"): 
+                    category = "area"
+                if re.sub(r'\W+', '', row.text).startswith("Densityrank"): 
+                    category = "poprank"
+                if re.sub(r'\W+', '', row.text).startswith("Areacode"): 
+                    category = "areacode"
+                for member in otherMembers:
+                    if re.sub(r'\W+', '', row.text).startswith(member):
+                        category = "other"
+                #iterate through termLineHeader, if the current row from bs4 starts with the search term and the category matches - set variable and print the td
+                for item in termLineHeader:
+                    if re.sub(r'\W+', '', row.text).startswith(item[0])  and item[3]==category: 
+                            # print(row.text)
+                            if row.text != '': #Only print for info that is present
+                                cleaned_td = re.sub(r"\[\d+\]", " ", row.td.text) #removes citations numbers
+                                cleaned_td_stripped = cleaned_td.replace(u"\u2022","")
+                                print(item[1], cleaned_td_stripped)
+                                item[4] = cleaned_td_stripped
+            except:
+                print("error")
 
-            # data.append([item for item in cols if item]) # Get rid of empty values
-            # print("here is cols:", cols)
 
-            # Change category for scraping
-            if re.sub(r'\W+', '', row.text).startswith("Population"): 
-                popAreaTest = "pop"
-            if re.sub(r'\W+', '', row.text).startswith("Area"): 
-                popAreaTest = "area"
-            if re.sub(r'\W+', '', row.text).startswith("Densityrank"): 
-                popAreaTest = "poprank"
-            if re.sub(r'\W+', '', row.text).startswith("Areacode"): 
-                popAreaTest = "areacode"
-            if re.sub(r'\W+', '', row.text).startswith("Demonym") or re.sub(r'\W+', '', row.text).startswith("Time") or re.sub(r'\W+', '', row.text).startswith("Elevation") :
-                popAreaTest = "other"
-
-            # print(row.text)
-            # print(popAreaTest)
-            for item in termLineHeader:
-                if re.sub(r'\W+', '', row.text).startswith(item[0])  and item[3]==popAreaTest: 
-                    try:
-                        if cols[0] != '': #Only print for info that is present
-                            print(item[1], cols[0])
-                        # item[4] = cols[0].replace("&nbsp", "")
-                        # print()
-                        # # rows.replace_with(strippedText)
-                        item[4] = cols[0]
-
-                    except:
-                        print("error") # add better error message
-        print()
-        print("This is the termLineHeader array: ")
-        for line in enumerate(termLineHeader):
-            print(line)
         return termLineHeader

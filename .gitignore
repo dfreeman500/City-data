@@ -1,2 +1,4 @@
 api.py
 *.pyc 
+testingzone.py
+city_data.csv

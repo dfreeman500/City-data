@@ -1,6 +1,6 @@
 # City-data
 
-This console app allows the user to get data on a city using a variety of APIs and webscraping. It works best on American cities but can find information on many non-American cities.
+This console app allows the user to get data on a city using a variety of APIs and webscraping. It works best on American cities but can find information on many non-American cities. 
 
 1. **Clone the repo**
 2. **Create an api.py file in the main directory and copy and paste the openWeatherApi variable (ex: ' openWeatherApi = "abc123" ') that is given to you into the file and save.**
