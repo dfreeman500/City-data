@@ -4,6 +4,7 @@ import time
 from Weather import getWeather
 from wiki import getWiki
 import csv_export
+import graph_data
 
 # firstRun and runMode are for csv exporter so header only is exported the first time
 firstRun = True 
@@ -23,6 +24,10 @@ def chooseCity(menuChoice):
     return responses  #returns [ response.status_code, cityState, response.json()]
 
 while True:
+    if len(cityList)>0:
+        graphOption = "4.) Type '4' to see a graph of populations for the diffrent cities you've looked up so far."
+    else:
+        graphOption = ''
 
     menuChoice = input("""
 
@@ -34,15 +39,23 @@ while True:
             or
         3.) Type 'exit' to exit
 
-        """)
+        {}
+
+        """.format(graphOption))
+  
 
     if menuChoice.lower() == "exit" or menuChoice=="3":
         break
 
     if menuChoice == '2':
-        print("Here are the cities you've found data on and info is now in csv file:")
+        print("Number of cities with data in the csv file: {}".format(len(cityList)))
         for city in enumerate(cityList, start = 1):
             print(city)
+        continue
+
+    if menuChoice =='4' and len(cityList)>0:
+        graph_data.graphIt()
+
     
     else:
         cityData = chooseCity(menuChoice.title()) # using .title() helps avoid some errors
