@@ -26,11 +26,11 @@ def chooseCity(menuChoice):
 while True:
     if len(cityList)>0:
         graphOption = """  
-        2.) Type '2' to see a history of cities that you have obtained information about
+        2.) Type '2' to see a history of cities that have been loaded into the csv.
             or
-        3.) Type '3' to see a graph of populations for the diffrent cities you've looked up so far.
+        3.) Type '3' to see a graph of estimated populations (some cities on wikipedia do not show estimated population).
             or
-        4.) Type '4' to see a graph of population density for the differnet cities you've looked up so far.
+        4.) Type '4' to see a graph of population density for the differnet cities.
             or
         """
     else:
@@ -86,11 +86,21 @@ while True:
                 firstRun, runMode = csv_export.exportToCSV(names_of_columns, data_for_columns, firstRun, runMode) # runs the csv exporter and gives/gets info on mode and firstRun
                 cityList.append(cityData[1])
             except ValueError as err:
-                print(err, "Error. Well that didn't go as planned...")
+                print(err, "There was value error in Main.py")
             except PermissionError as err:
-                print("Permission was denied. Is the Excel file open?", err)             
-            except:
-                print("Main.py had an error")#add better error message
+                print("""
+                
+                Permission was denied. Is the Excel file open?
+                
+                """, err)             
+            except AttributeError as err:
+                print(err, """
+                
+                The Openweather api may have determined that your input was a valid city, but the url above
+                lacks the HTML structure needed to scrape information effectively.
+
+                """)
+                
 
 
 

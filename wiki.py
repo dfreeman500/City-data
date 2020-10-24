@@ -32,7 +32,7 @@ class getWiki:
             ["Rank", "The city's population rank is ", "Population_Rank", "pop", Population_Rank],
             ["Density", "The city's population density is", "Population_Density", "pop", Population_Density],
 
-            ["Densityrank", "The city's population density rank is", "Population_Density_Rank", "poprank", Population_Density_Rank],
+            # ["Densityrank", "The city's population density rank is", "Population_Density_Rank", "poprank", Population_Density_Rank],
 
             # ["Area", "The total area is", "Total_Area", "area", Total_Area],
             ["Land", "The total land area is ", "Total_Land_Area", "area", Total_Land_Area],
@@ -52,19 +52,21 @@ class getWiki:
         otherMembers = ["Mayor","Website","Nickname","Demonym","Motto","MajorAirports","Primary","Secondary", "Airport", "Rapid", "Time"]
         
 
-        url = ''.join(['https://en.wikipedia.org/wiki/', self.cityState])
+        url = ''.join(['https://en.wikipedia.org/wiki/', self.cityState]).replace(' ', '_')
         r = requests.get(url)
         soup = BeautifulSoup(r.text, features='lxml')
+        table = soup.find('table', attrs={'class':'infobox geography vcard'})
         print(url)
-        for row in soup.table.find_all('tr')[1:]: #finds table rows
+        # print(table.prettify())
+        for row in table.find_all('tr')[1:]: #finds table rows
             try:
                 #This section checks the beginning portion of the row to determine what category to set
                 if re.sub(r'\W+', '', row.text).startswith("Population"): 
                     category = "pop"
                 if re.sub(r'\W+', '', row.text).startswith("Area"): 
                     category = "area"
-                if re.sub(r'\W+', '', row.text).startswith("Densityrank"): 
-                    category = "poprank"
+                # if re.sub(r'\W+', '', row.text).startswith("Densityrank"): 
+                #     category = "poprank"
                 if re.sub(r'\W+', '', row.text).startswith("Areacode"): 
                     category = "areacode"
                 for member in otherMembers:
