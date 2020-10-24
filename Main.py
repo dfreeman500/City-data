@@ -25,7 +25,14 @@ def chooseCity(menuChoice):
 
 while True:
     if len(cityList)>0:
-        graphOption = "4.) Type '4' to see a graph of populations for the diffrent cities you've looked up so far."
+        graphOption = """  
+        2.) Type '2' to see a history of cities that you have obtained information about
+            or
+        3.) Type '3' to see a graph of populations for the diffrent cities you've looked up so far.
+            or
+        4.) Type '4' to see a graph of population density for the differnet cities you've looked up so far.
+            or
+        """
     else:
         graphOption = ''
 
@@ -34,33 +41,38 @@ while True:
 
     
         1.) Enter a city, state (ex: 'Louisville, Kentucky') to find out information about it
-            or 
-        2.) Type '2' to see a history of cities that you have obtained information about
-            or
-        3.) Type 'exit' to exit
+            or {}
+        
+            Type 'exit' to exit
 
-        {}
+        
 
         """.format(graphOption))
   
 
-    if menuChoice.lower() == "exit" or menuChoice=="3":
+    if menuChoice.lower() == "exit" or menuChoice.lower()=="e":
         break
 
-    if menuChoice == '2':
+    if menuChoice == '2' and len(cityList)>0:
         print("Number of cities with data in the csv file: {}".format(len(cityList)))
         for city in enumerate(cityList, start = 1):
             print(city)
         continue
 
+    if menuChoice =='3' and len(cityList)>0:
+        graph_data.graphPop()
+        continue
+
     if menuChoice =='4' and len(cityList)>0:
-        graph_data.graphIt()
+        graph_data.graphPopDensity()
+        continue
 
     
     else:
         cityData = chooseCity(menuChoice.title()) # using .title() helps avoid some errors
         if cityData[0] != 200:
             print("You entered {} but that wasn't found. Please try again. Please use the format of 'Louisville, Kentucky'".format(cityData[1]))
+            print(cityData[0])
         else:
             try:
                 b = CityInfo(cityState = cityData[1], weather = cityData[2]) ## creates an instance of CityInfo class passing in the cityRequest
