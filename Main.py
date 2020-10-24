@@ -87,6 +87,7 @@ while True:
                 cityList.append(cityData[1])
             except ValueError as err:
                 print(err, "There was value error in Main.py")
+                
             except PermissionError as err:
                 print("""
                 
@@ -96,7 +97,7 @@ while True:
             except AttributeError as err:
                 print(err, """
                 
-                The Openweather api may have determined that your input was a valid city, but the url above
+                The Openweather api may have determined or converted your input as a valid city, but the url above
                 lacks the HTML structure needed to scrape information effectively.
 
                 """)
