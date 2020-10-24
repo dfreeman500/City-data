@@ -6,34 +6,21 @@ This console app allows the user to get data on a city using the Openweather API
 # Code Louisville Features Met:
 
 * Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program 
-    ##### * Main.py has a master loop 
-
-
+    * Main.py has a master loop 
 * Create a class, then create at least one object of that class and populate it with data
-    ##### * City.py and wiki.py utilize a class
-
-
+    * City.py and wiki.py utilize a class
 * Create a dictionary or list, populate it with several values, retrieve at least one value, and use it in your program
-    ##### * Main.py uses cityList variable to store list of cities, wiki.py uses termLineHeader array to temporarily store scraped data
-
-
+    * Main.py uses cityList variable to store list of cities, wiki.py uses termLineHeader array to temporarily store scraped data
 * Read data from an external file, such as text, JSON, CSV, etc and use that data in your application
-    ##### * graph_data.py reads city_data.csv to display bar graphs
-
-
+    * graph_data.py reads city_data.csv to display bar graphs
 * Create and call at least 3 functions, at least one of which must return a value that is used
-    ##### * multiple functions, wiki.py has returnWikiInfo which returns termLineHeader array
-
-
+    * multiple functions, wiki.py has returnWikiInfo which returns termLineHeader array
 * Connect to an external/3rd party API and read data into your app
-    ##### * Weather.py connects to openweathermap.org API
-
+    * Weather.py connects to openweathermap.org API
 * Visualize data in a graph, chart, or other visual representation of data
-    ##### * graph_data.py uses matplotlib and pandas to graph data from a csv
-
-
+    * graph_data.py uses matplotlib and pandas to graph data from a csv
 * Implement a “scraper” that can be fed a type of file or URL and pull information off of it.
-    ##### * Bs4 is used to scrape wikipedia information
+    * Bs4 is used to scrape wikipedia information
 
 
 
