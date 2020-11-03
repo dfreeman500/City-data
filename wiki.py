@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import re
 
 
-class getWiki:
+class GetWiki:
     def __init__(self, cityState):
         self.cityState = cityState
 
