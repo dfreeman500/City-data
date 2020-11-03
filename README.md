@@ -1,6 +1,6 @@
 # City-data
 
-This console app allows the user to get data on a city using the Openweather API and webscraping. You enter a city and state and the openweather api searches for the temperature. Then the program generates a url and returns the page. The program scrapes the information from the page and stores the info into a csv file. You can read the csv and show bar graphs of estimated population and population density (not all cities provide this information).  The program works best on American cities.
+This console app allows the user to get data on a city using the Openweather API and webscraping. You enter a city and state and the openweather api searches for the temperature. If the input is valid and a temperature is returned, the program generates a wikipedia url. If the url is valid, program scrapes the information from the page and stores the info into a csv file. You can read the csv and show bar graphs of estimated population and population density (not all cities provide this information).  The program works best for American cities.
 #
 
 # Code Louisville Features Met:
@@ -41,7 +41,7 @@ This console app allows the user to get data on a city using the Openweather API
 #
 
 * **Future additions:** 
-    * better use of files and classes to logically stream line app
+    * better use of files and classes to better logically stream line app
     * GUI
     * ability to take zip codes
     * convert state abbreviations to full state names

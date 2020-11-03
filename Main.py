@@ -1,19 +1,18 @@
-from City import CityInfo
-# import os
+from city import CityInfo
 import time
-from Weather import getWeather
-from wiki import getWiki
+from weather import getWeather
+from wiki import GetWiki
 import csv_export
 import graph_data
 
-# firstRun and runMode are for csv exporter so header only is exported the first time
+# firstRun and runMode are for csv exporter so header is only exported the first time
 firstRun = True 
 runMode = 'w'
 
-cityList = [] #keeps track of userinput/cities for history or comparison purposes
+cityList = [] #keeps track of cities that have been stored into the csv file
 
 print("""
-        Welcome to the City-data app. Find out information about a city (ex: Louisville, Kentucky)
+        Welcome to the City-data app. Find out information about a city (ex: Lexington, Kentucky)
         
 
 """)
@@ -30,7 +29,7 @@ while True:
             or
         3.) Type '3' to see a graph of estimated populations (some cities on wikipedia do not show estimated population).
             or
-        4.) Type '4' to see a graph of population density for the differnet cities.
+        4.) Type '4' to see a graph of population density for the different cities.
             or
         """
     else:
@@ -77,7 +76,7 @@ while True:
             try:
                 b = CityInfo(cityState = cityData[1], weather = cityData[2]) ## creates an instance of CityInfo class passing in the cityRequest
                 b.weatherInfo(cityState = cityData[1])
-                c = getWiki(cityState = cityData[1])  #Creates a getWiki Object for the target city
+                c = GetWiki(cityState = cityData[1])  #Creates a getWiki Object for the target city
                 wikiOutput = c.returnWikiInfo(cityState = cityData[1]) #uses scraping of getWiki object just created to return the termLineHeader array as wikiOutput
                 names_of_columns = ['City']
                 names_of_columns.extend([i[2] for i in wikiOutput ])  #combine the two data list comprehensions/loops??
@@ -87,7 +86,7 @@ while True:
                 cityList.append(cityData[1])
             except ValueError as err:
                 print(err, "There was value error in Main.py")
-                
+
             except PermissionError as err:
                 print("""
                 
@@ -98,7 +97,7 @@ while True:
                 print(err, """
                 
                 The Openweather api may have determined or converted your input as a valid city, but the url above
-                lacks the HTML structure needed to scrape information effectively.
+                lacks the HTML structure needed to scrape information effectively. It was not added to the csv file.
 
                 """)
                 
