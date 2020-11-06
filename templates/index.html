@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}{{ super() }}{% endblock %}
+<!-- {{ super() }} calls in the base template  -->
+<link rel="stylesheet" href="/static/styles.css">
+{% block content %}
+<div class="lookup box">
+    <h1>Hello, Welcome to the City Data app. If you like data about cities all in one place, this the app for you. Enter
+        in a bunch of cities to find out the current temp and a bunch of information scraped from wikipedia.</h1>
+
+    <div class="SetNumberOfCities">
+        <form>
+            <label for="numberOfCities">How many cities would you like to look up? (Enter a number between 1 and 20) </label>
+            <input class="numberOfCitiesBox" name="numberOfCities" id="numberOfCities" type="text" maxlength="2"
+                autofocus>
+            <button type="button" id="createCityInputs"> Click to Submit
+
+            </button>
+        </form>
+    </div>
+
+    <div class="cityInputs" id="cityInputs">
+        <h1></h1>
+    </div>
+
+
+<div class="grid box">
+</div>
+
+<h3> AutoSuggestions come from: https://simplemaps.com/data/us-cities</h3>
+<h3> Weather information comes from openweathermap.org API</h3>
+<h3> All other information comes from scraping wikipedia</h3>
+
+
+{% endblock %}
+{% block scripts %}
+<script src="/static/scripts.js"></script>
+{% endblock %}
+
+
+
+<!-- <li><input type="text" name = "cityName1" city="name" value="{{ saves.get('name', '')}}" autofocus> </li>
+            <li> <input type="text" name = "cityName2" city="name" value="{{ saves.get('name', '')}}" autofocus> </li>
+            <li> <input type="text" name = "cityName3" city="name" value="{{ saves.get('name', '')}}" autofocus> </li>
+            <li> <input type="text" name = "cityName4" city="name" value="{{ saves.get('name', '')}}" autofocus> </li>
+            <li> <input type="text" name = "cityName5" city="name" value="{{ saves.get('name', '')}}" autofocus> </li> -->

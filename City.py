@@ -8,4 +8,4 @@ class CityInfo:
 
     def weatherInfo(self, cityState):
         print("The temperature in {} is {} degrees Fahrenheit but it feels like {}.".format(cityState, self.weather["main"]["temp"],self.weather["main"]["feels_like"] ))
-
+        return self.weather["main"]["temp"]

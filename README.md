@@ -1,6 +1,8 @@
 # City-data
 
-This console app allows the user to get data on a city using the Openweather API and webscraping. You enter a city and state and the openweather api searches for the temperature. If the input is valid and a temperature is returned, the program generates a wikipedia url. If the url is valid, program scrapes the information from the page and stores the info into a csv file. You can read the csv and show bar graphs of estimated population and population density (not all cities provide this information).  The program works best for American cities.
+This  app allows the user to get data on a city (or cities) using the Openweather API and webscraping from wikipedia. You enter a city and state and the openweather api searches for the temperature. If the input is valid and a temperature is returned, the program generates a wikipedia url. If the url is valid, the program scrapes the information from the page and stores the info into a csv file. You can read the csv and show bar graphs of estimated population and population density (not all cities provide this information).  The program works best for American cities. 
+
+A command line app (main.py) and a GUI flask app (flask_app.py) are available. flask_app.py allows for running batches on cities. 
 #
 
 # Code Louisville Features Met:
@@ -16,11 +18,13 @@ This console app allows the user to get data on a city using the Openweather API
 * Create and call at least 3 functions, at least one of which must return a value that is used
     * multiple functions, wiki.py has returnWikiInfo which returns termLineHeader array
 * Connect to an external/3rd party API and read data into your app
-    * Weather.py connects to openweathermap.org API
+    * weather.py connects to openweathermap.org API
 * Visualize data in a graph, chart, or other visual representation of data
     * graph_data.py uses matplotlib and pandas to graph data from a csv
 * Implement a “scraper” that can be fed a type of file or URL and pull information off of it.
     * Bs4 is used to scrape wikipedia information
+* Other features 
+    * Flask app
 
 
 
@@ -36,7 +40,12 @@ This console app allows the user to get data on a city using the Openweather API
     * lxml == 4.5.2
     * matplotlib == 3.3.2
     * pandas == 1.1.0
-4. **Run Main.py**
+    * Flask == 1.1.2
+4. **Run main.py** for a command line program
+        or
+    **flask_app.py** for GUI and to run batches. If running flask_app.py, use http://localhost:8000/ once program is running.
+
+    * Program written in Python 3.8.6
 
 #
 
@@ -45,3 +54,12 @@ This console app allows the user to get data on a city using the Openweather API
     * GUI
     * ability to take zip codes
     * convert state abbreviations to full state names
+
+
+# Declarations/Thanks:
+* Temperature provided by openweathermap.org API
+* City/state suggestion list provided by:  https://simplemaps.com/data/us-cities.
+* City data scraped from wikipedia
+
+# Glitches
+* Some browsers may not always present the updated csv file for download from the link provided. However, the updated .csv file will be available in /city_data.csv
