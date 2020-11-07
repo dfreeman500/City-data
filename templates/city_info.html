@@ -1,34 +1,52 @@
-<!doctype html>
-<html>
+{% extends "base.html" %}
 
-<head>
-    <title> {% block title %} City Data {% endblock %}</title>
-    <link rel = "stylesheet" href = "/static/styles.css">
+{% block title %} {{ super() }}{% endblock %}
+<link rel = "stylesheet" href = "/static/styles.css">
 </head>
 
-<body>
-    {% block content %}{% endblock %}
+    {% block content %}
+    {{ super() }}
+
+    <div>
+        <h4 style="color: blue">{{validCitiesList|length + entriesWithNoReturn|length + entriesWithNoText|length  }} input fields were requested</h4>
+        {% if entriesWithNoReturn|length > 0 %}
+        <h4 style="color:red">{{ entriesWithNoReturn|length }} inputs did not return a result: {{ entriesWithNoReturn }}</h4>
+        {% endif %}
+        {% if entriesWithNoText|length > 0 %}
+        <h4 style="color:red">{{ entriesWithNoText|length }} input fields were blank</h4>
+        {% endif %}
+        <h4 style="color: blue">{{validCitiesList|length}} result(s) were returned below</h4>
+    </div>
+
     <table style="margin-left: 15px;"> 
-            <th> 
-                <tr style="color: green; font-weight: bold;">     
-                    {% for line in wikiBatch[0] %}
-                    <td style=" border: 1px solid black;">{{ line[2] }}</td> 
-                    {% endfor %}                   
-                </tr> 
-            </th> 
+        
+        <tr style="color: green; font-weight: bold;">     
+            {% for item in justHeader %}
+            <th style=" border: 1px solid black;">{{ item }}</th> 
+            {% endfor %}                   
+        </tr> 
+        
         <tr> 
             {% for wiki in wikiBatch %}
             {% for line in wiki %}
-            <td style=" border: 1px solid black;">{{ line[4] }}</td> 
+            <td style=" border: 1px solid blue;">{{ line[4] }}</td> 
             {% endfor %}
         </tr> 
             {% endfor %}
     </table> 
 
-    {%block scripts%}{%endblock%}
-    <!-- <script src="/static/scripts.js"></script> -->
+    <!-- <img src="/static/images/population.png" alt="Chart" height="auto" width="100%">
+    <img src="/static/images/population_density.png" alt="Chart" height="auto" width="100%"> -->
     <a href="/">Go back to the index page</a>
     <a href="/download">Download the csv file with the city data</a>
+    <!-- <a> Right click on images to save</a> -->
 
-</body>
-</html>
+    {% endblock %}
+   
+
+    {%block scripts%}{{ super() }}    {%endblock%}
+    <!-- <script src="/static/scripts.js"></script> -->
+
+
+  
+

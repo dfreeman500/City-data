@@ -2,11 +2,11 @@ var cityInputs = document.querySelector('.cityInputs');
 
 function buildCityInputForm(numberOfCities) {
     var html = "";
-    html += `<form action="/city_info" method="POST" >` + `<ol>`
+    html += `<form autocomplete="off"  action="/city_info" method="POST" >` + `<ol>`
     for (var i = 0; i < numberOfCities; i++) {
             html += `<li>` +
             `<p>` +
-            `<input type="text" name="${i}" id="${i}">` +
+            `<input type="text" name="${i}" id="${i}"  placeholder="city, state">` +
             `</p>` +
             `</li>` 
         }

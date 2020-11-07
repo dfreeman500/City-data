@@ -7,7 +7,7 @@ def graphIt():
     pass
 
 #Graphs the population
-def graphPop():
+def graphPop(requestor="main"):
     data = pandas.read_csv('city_data.csv')
     cities = data.City.tolist()
     population = data.Estimated_Population.tolist()
@@ -21,11 +21,15 @@ def graphPop():
     plt.ylabel("Population")
     plt.title("Populations of Various Cities")
     plt.xticks(x_pos, cities)
-    plt.show()
+    population_graph = plt.savefig('static/images/population.png')
+    if requestor == "main":
+        plt.show()
+    return population_graph
+
 
 
 #Graphs population density
-def graphPopDensity():
+def graphPopDensity(requestor="main"):
     data = pandas.read_csv('city_data.csv')
     cities = data.City.tolist()
     population_density = data.Population_Density.tolist()
@@ -42,6 +46,10 @@ def graphPopDensity():
     plt.ylabel("Population Density per sq mi")
     plt.title("Population Densities of Various Cities")
     plt.xticks(x_pos, cities)
-    plt.show()
+    population_density_graph = plt.savefig('static/images/population_density.png')
+
+    if requestor == "main":
+        plt.show()
+    return population_density_graph
 
 

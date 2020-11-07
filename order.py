@@ -12,6 +12,7 @@ def chooseCity(menuChoice):
 
 def orderOfOps(firstRun,runMode, menuChoice, cityList, requestor):
     wikiOutput=[]
+    justHeader=[]
     cityData = chooseCity(menuChoice.title()) # using .title() helps avoid some errors
 
     if cityData[0] != 200:
@@ -25,9 +26,9 @@ def orderOfOps(firstRun,runMode, menuChoice, cityList, requestor):
             temp = b.weatherInfo(cityState = cityData[1])
             c = GetWiki(cityState = cityData[1],temp=temp)  #Creates a getWiki Object for the target city
             
-            wikiOutput = c.returnWikiInfo(cityState = cityData[1], temp=temp) #uses scraping of getWiki object just created to return the termLineHeader array as wikiOutput
-            names_of_columns = []
-            names_of_columns.extend([i[2] for i in wikiOutput ])  #combine the two data list comprehensions/loops??
+            wikiOutput, justHeader = c.returnWikiInfo(cityState = cityData[1], temp=temp) #uses scraping of getWiki object just created to return the termLineHeader array as wikiOutput
+            names_of_columns = justHeader
+            # names_of_columns.extend([i[2] for i in wikiOutput ])  #combine the two data list comprehensions/loops??
             data_for_columns = []
             data_for_columns.extend([i[4] for i in wikiOutput ])
             firstRun, runMode = csv_export.exportToCSV(names_of_columns, data_for_columns, firstRun, runMode) # runs the csv exporter and gives/gets info on mode and firstRun
@@ -54,4 +55,4 @@ def orderOfOps(firstRun,runMode, menuChoice, cityList, requestor):
                 That city wasn't found
             """)
                 
-    return firstRun, runMode, wikiOutput, cityList
+    return firstRun, runMode, wikiOutput, cityList, justHeader

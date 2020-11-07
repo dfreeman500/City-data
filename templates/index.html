@@ -4,6 +4,7 @@
 <!-- {{ super() }} calls in the base template  -->
 <link rel="stylesheet" href="/static/styles.css">
 {% block content %}
+{{ super() }}
 <div class="lookup box">
     <h1>Hello, Welcome to the City Data app. If you like data about cities all in one place, this the app for you. Enter
         in a bunch of cities to find out the current temp and a bunch of information scraped from wikipedia.</h1>
@@ -34,7 +35,7 @@
 
 {% endblock %}
 {% block scripts %}
-<script src="/static/scripts.js"></script>
+{{ super() }}
 {% endblock %}
 
 

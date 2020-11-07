@@ -8,11 +8,11 @@ A command line app (main.py) and a GUI flask app (flask_app.py) are available. f
 # Code Louisville Features Met:
 
 * Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program 
-    * Main.py has a master loop 
+    * main.py has a master loop 
 * Create a class, then create at least one object of that class and populate it with data
-    * City.py and wiki.py utilize a class
+    * city.py and wiki.py utilize a class
 * Create a dictionary or list, populate it with several values, retrieve at least one value, and use it in your program
-    * Main.py uses cityList variable to store list of cities, wiki.py uses termLineHeader array to temporarily store scraped data
+    * main.py uses cityList variable to store list of cities, wiki.py uses termLineHeader array to temporarily store scraped data
 * Read data from an external file, such as text, JSON, CSV, etc and use that data in your application
     * graph_data.py reads city_data.csv to display bar graphs
 * Create and call at least 3 functions, at least one of which must return a value that is used
@@ -49,11 +49,12 @@ A command line app (main.py) and a GUI flask app (flask_app.py) are available. f
 
 #
 
-* **Future additions:** 
+* **Future directions:** 
     * better use of files and classes to better logically stream line app
-    * GUI
     * ability to take zip codes
     * convert state abbreviations to full state names
+    * Only return unique cities
+    * Ability to print matplotlib to flask web app. Not able to do this consistently seemingly due to known threading issue (matplotlib likes to be run in the main loop)
 
 
 # Declarations/Thanks:

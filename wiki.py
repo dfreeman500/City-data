@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 import re
 
 
+
+
 class GetWiki:
     def __init__(self, cityState, temp):
         self.cityState = cityState
@@ -58,7 +60,10 @@ class GetWiki:
         #category and otherMembers - help the program determine if in the population, area, or other section as search terms are not unique between these areas
         category = "other" 
         otherMembers = ["Mayor","Website","Nickname","Demonym","Motto","MajorAirports","Primary","Secondary", "Airport", "Rapid", "Time"]
-        
+
+
+
+
 
         url = ''.join(['https://en.wikipedia.org/wiki/', self.cityState]).replace(' ', '_')
         r = requests.get(url)
@@ -102,5 +107,8 @@ class GetWiki:
             except:
                 print("error")
 
+        justHeader=[] # sends just the header info - makes it easier in flask in case someone sends only blank forms or jibberish info
+        for item in termLineHeader:
+            justHeader.append(item[2])
 
-        return termLineHeader
+        return termLineHeader, justHeader

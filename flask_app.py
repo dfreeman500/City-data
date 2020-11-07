@@ -9,6 +9,9 @@ from wiki import GetWiki
 import csv_export
 import graph_data
 import order
+from threading import Thread #needed because mtaplotlib is called outside of main loop
+import threading
+
 
 app = Flask(__name__)
 
@@ -38,10 +41,47 @@ def city_info():
     # print(cityList)
 
     for city in cityList:
-        firstRun, runMode, wikiOutput, cityList = order.orderOfOps(firstRun,runMode, menuChoice=city, cityList = cityList, requestor="flask_app")
-        wikiBatch.append(wikiOutput)
+        firstRun, runMode, wikiOutput, cityList, justHeader = order.orderOfOps(firstRun,runMode, menuChoice=city, cityList = cityList, requestor="flask_app")
+        wikiBatch.append(wikiOutput) #puts the termLineHeader for each city into a batch
 
-    return render_template("city_info.html", cityList=cityList, wikiBatch = wikiBatch)
+    if not wikiBatch[0]:
+        getHeader = GetWiki(cityState = "New York City",temp="72")  #grabs the header info by looking up NYC if nothing is in the first for item 
+        throwAway, justHeader = getHeader.returnWikiInfo(cityState = "New York City", temp="72") #don't only care about justHeader
+    
+    validCitiesList = [] #
+    for item in wikiBatch:
+        if len(item)>0:
+            print(item)
+            validCitiesList.append(item[0][4])
+    print("Valid cities list:", validCitiesList)
+    print(cityList)
+    entriesWithNoReturn =[]
+    entriesWithNoText=[]
+    for item in cityList:       #Find inputs that did not get return values and let the user know
+        if len(item)>0 and item.title() not in validCitiesList:
+            entriesWithNoReturn.append(item)
+        if len(item)<1:
+            entriesWithNoText.append(item)
+    
+    print("These items did not return a result", entriesWithNoReturn)
+    print("These are items with no text: ", entriesWithNoText, len(entriesWithNoText))
+    
+    # try:
+    #     avoidError1 = threading.Thread(target=graph_data.graphPop)
+    #     # avoidError1.setDaemon(True)
+    #     avoidError1.start()
+
+    #     avoidError2 = threading.Thread(target=graph_data.graphPopDensity)
+    #     # avoidError2.setDaemon(True)
+    #     avoidError2.start()
+    # except Exception as err:
+    #     print("error with threading.Thread, ", err)
+    
+    # graph_data.graphPopDensity(requestor="flask_app")
+
+
+
+    return render_template("city_info.html", cityList=cityList, wikiBatch = wikiBatch, justHeader=justHeader, entriesWithNoReturn=entriesWithNoReturn, entriesWithNoText=entriesWithNoText, validCitiesList=validCitiesList)
 
 
 @app.route('/download',methods=['POST', 'GET']) #Download CSV file

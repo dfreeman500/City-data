@@ -54,15 +54,15 @@ while True:
         continue
 
     if menuChoice =='3' and len(cityList)>0:
-        graph_data.graphPop()
+        graph_data.graphPop("main")
         continue
 
     if menuChoice =='4' and len(cityList)>0:
-        graph_data.graphPopDensity()
+        graph_data.graphPopDensity("main")
         continue
 
     else:
-        firstRun, runMode, menuChoice, cityList = order.orderOfOps(firstRun,runMode, menuChoice, cityList, requestor="main")
+        firstRun, runMode, menuChoice, cityList, justHeader = order.orderOfOps(firstRun,runMode, menuChoice, cityList, requestor="main")
         
 
         
