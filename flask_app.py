@@ -11,6 +11,7 @@ import graph_data
 import order
 from threading import Thread #needed because mtaplotlib is called outside of main loop
 import threading
+import search_array
 
 
 app = Flask(__name__)
@@ -44,17 +45,17 @@ def city_info():
         firstRun, runMode, wikiOutput, cityList, justHeader = order.orderOfOps(firstRun,runMode, menuChoice=city, cityList = cityList, requestor="flask_app")
         wikiBatch.append(wikiOutput) #puts the termLineHeader for each city into a batch
 
-    if not wikiBatch[0]:
-        getHeader = GetWiki(cityState = "New York City",temp="72")  #grabs the header info by looking up NYC if nothing is in the first for item 
-        throwAway, justHeader = getHeader.returnWikiInfo(cityState = "New York City", temp="72") #don't only care about justHeader
+    unpopulatedTLH = search_array.termLineHeader("NoCity", "72")
+    justHeader= [item[2] for item in unpopulatedTLH]
+    # print("this is justheader", justHeader)
     
     validCitiesList = [] #
     for item in wikiBatch:
         if len(item)>0:
-            print(item)
+            # print(item)
             validCitiesList.append(item[0][4])
-    print("Valid cities list:", validCitiesList)
-    print(cityList)
+    # print("Valid cities list:", validCitiesList)
+    # print(cityList)
     entriesWithNoReturn =[]
     entriesWithNoText=[]
     for item in cityList:       #Find inputs that did not get return values and let the user know
@@ -63,8 +64,8 @@ def city_info():
         if len(item)<1:
             entriesWithNoText.append(item)
     
-    print("These items did not return a result", entriesWithNoReturn)
-    print("These are items with no text: ", entriesWithNoText, len(entriesWithNoText))
+    # print("These items did not return a result", entriesWithNoReturn)
+    # print("These are items with no text: ", entriesWithNoText, len(entriesWithNoText))
     
     # try:
     #     avoidError1 = threading.Thread(target=graph_data.graphPop)

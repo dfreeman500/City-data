@@ -2,3 +2,4 @@ api.py
 *.pyc 
 testingzone.py
 city_data.csv
+settings.json

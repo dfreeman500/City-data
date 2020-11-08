@@ -1,8 +1,8 @@
 # City-data
 
-This  app allows the user to get data on a city (or cities) using the Openweather API and webscraping from wikipedia. You enter a city and state and the openweather api searches for the temperature. If the input is valid and a temperature is returned, the program generates a wikipedia url. If the url is valid, the program scrapes the information from the page and stores the info into a csv file. You can read the csv and show bar graphs of estimated population and population density (not all cities provide this information).  The program works best for American cities. 
+This app allows the user to get data on a city (or cities) using the Openweather API and webscraping from wikipedia. You enter a city and state and the openweather api searches for the temperature. If the input is valid and a temperature is returned, the program generates a wikipedia url. If the url is valid and has enough structure for scraping, the program scrapes the information from the page and stores the info into a csv file (city_data.csv). Matplotlib can read the csv and show bar graphs of estimated population and population density (not all cities provide this information).  The program works best for American cities. 
 
-A command line app (main.py) and a GUI flask app (flask_app.py) are available. flask_app.py allows for running batches on cities. 
+A command line app (main.py) and a GUI flask app (flask_app.py) are available (graphs not available on flask.app.py)
 #
 
 # Code Louisville Features Met:
@@ -34,7 +34,7 @@ A command line app (main.py) and a GUI flask app (flask_app.py) are available. f
 
 1. **Clone the repo**
 2. **Create an api.py file in the main directory and copy and paste the openWeatherApi variable (ex: ' openWeatherApi = "abc123" ') that is given to you into the file and save.**
-3. **PIP install the following or use the requirements.txt file:**
+3. **PIP install the following or use requirements.txt ( pip install -r requirements.txt):**
     * requests == 2.24.0
     * bs4 == 0.0.1
     * lxml == 4.5.2
@@ -43,7 +43,7 @@ A command line app (main.py) and a GUI flask app (flask_app.py) are available. f
     * Flask == 1.1.2
 4. **Run main.py** for a command line program
         or
-    **flask_app.py** for GUI and to run batches. If running flask_app.py, use http://localhost:8000/ once program is running.
+    **flask_app.py** for GUI and to run batches. If running flask_app.py, enter http://localhost:8000/ into web browser once program is running.
 
     * Program written in Python 3.8.6
 
@@ -58,9 +58,9 @@ A command line app (main.py) and a GUI flask app (flask_app.py) are available. f
 
 
 # Declarations/Thanks:
-* Temperature provided by openweathermap.org API
-* City/state suggestion list provided by:  https://simplemaps.com/data/us-cities.
-* City data scraped from wikipedia
+* Temperature provided by https://openweathermap.org/api 
+* City/state suggestion list taken from:  https://simplemaps.com/data/us-cities.
+* City data scraped from https://www.wikipedia.org/
 
 # Glitches
-* Some browsers may not always present the updated csv file for download from the link provided. However, the updated .csv file will be available in /city_data.csv
+* Some browsers may not always present the updated csv file for download from the link provided in flask web app. However, the updated .csv file will be available in /city_data.csv
