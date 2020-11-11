@@ -6,7 +6,30 @@ A command line app (main.py) and a GUI flask app (flask_app.py) are available (g
 
 For the command line app, Matplotlib can read the csv and show bar graphs of estimated population and population density (not all cities provide this information).  The program works best for American cities. Each wikipedia page has varying information on each city.
 
+#
+Example of flask_app.py
 ![flash_app.py](images/citydata_gif_1.gif) 
+
+
+#
+# Instructions:
+
+1. **Clone the repo**
+2. **Create an api.py file in the main directory and copy and paste the openWeatherApi variable (ex: ' openWeatherApi = "abc123" ') that is given to you into the file and save.**
+3. **PIP install the following or use requirements.txt ( pip install -r requirements.txt):**
+    * requests == 2.24.0
+    * bs4 == 0.0.1
+    * lxml == 4.5.2
+    * matplotlib == 3.3.2
+    * pandas == 1.1.0
+    * Flask == 1.1.2
+4. Run **main.py** for a command line program (ability to see graphs of estimated population and population density when available).
+
+   or
+
+    run **flask_app.py** for GUI and to run batches with some autosuggestions. This option still produces a csv in the root directory, however, graphs are not available. If running flask_app.py, enter http://localhost:8000/ into web browser once program is running.
+
+    * Program written in Python 3.8.6
 
 #
 
@@ -34,25 +57,7 @@ For the command line app, Matplotlib can read the csv and show bar graphs of est
 
 
 
-#
-# Instructions:
 
-1. **Clone the repo**
-2. **Create an api.py file in the main directory and copy and paste the openWeatherApi variable (ex: ' openWeatherApi = "abc123" ') that is given to you into the file and save.**
-3. **PIP install the following or use requirements.txt ( pip install -r requirements.txt):**
-    * requests == 2.24.0
-    * bs4 == 0.0.1
-    * lxml == 4.5.2
-    * matplotlib == 3.3.2
-    * pandas == 1.1.0
-    * Flask == 1.1.2
-4. Run **main.py** for a command line program (ability to see graphs of estimated population and population density when available).
-
-   or
-
-    run **flask_app.py** for GUI and to run batches with some autosuggestions. This option still produces a csv in the root directory, however, graphs are not available. If running flask_app.py, enter http://localhost:8000/ into web browser once program is running.
-
-    * Program written in Python 3.8.6
 
 #
 
