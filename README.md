@@ -44,9 +44,11 @@ For the command line app, Matplotlib can read the csv and show bar graphs of est
     * matplotlib == 3.3.2
     * pandas == 1.1.0
     * Flask == 1.1.2
-4. **Run main.py** for a command line program
+4. Run **main.py** for a command line program (ability to see graphs of estimated population and population density when available).
+
         or
-    **flask_app.py** for GUI and to run batches. If running flask_app.py, enter http://localhost:8000/ into web browser once program is running.
+
+    **flask_app.py** for GUI and to run batches with some autosuggestions. If running flask_app.py, enter http://localhost:8000/ into web browser once program is running.
 
     * Program written in Python 3.8.6
 
