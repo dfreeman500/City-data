@@ -1,8 +1,8 @@
 var cityInputs = document.querySelector('.cityInputs');
 
+// Dynamically builds the input boxes for the user to input cities
 function buildCityInputForm(numberOfCities) {
-    var html = "";
-    html += `<form autocomplete="off"  action="/city_info" method="POST" >` + `<ol>`
+    var html = `<form autocomplete="off"  action="/city_info" method="POST" >` + `<ol>`
     for (var i = 0; i < numberOfCities; i++) {
         html += `<li>` +
             `<p>` +

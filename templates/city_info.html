@@ -19,13 +19,11 @@
     </div>
 
     <table style="margin-left: 15px;"> 
-        
         <tr style="color: green; font-weight: bold;">     
             {% for item in justHeader %}
             <th style=" border: 1px solid black;">{{ item }}</th> 
             {% endfor %}                   
         </tr> 
-        
         <tr> 
             {% for wiki in wikiBatch %}
             {% for line in wiki %}
@@ -39,13 +37,8 @@
     <img src="/static/images/population_density.png" alt="Chart" height="auto" width="100%"> -->
     <a href="/">Go back to the index page</a>
     <a href="/download">Download the csv file with the city data</a>
-    <!-- <a> Right click on images to save</a> -->
-
     {% endblock %}
-   
-
     {%block scripts%}{{ super() }}    {%endblock%}
-    <!-- <script src="/static/scripts.js"></script> -->
 
 
   

@@ -1,21 +1,19 @@
 {% extends "base.html" %}
 
 {% block title %}{{ super() }}{% endblock %}
-<!-- {{ super() }} calls in the base template  -->
+<!-- {{ super() }} calls in the base template for the section  -->
 <link rel="stylesheet" href="/static/styles.css">
 {% block content %}
 {{ super() }}
 <div class="lookup box">
-    <h1>Hello, Welcome to the City Data app. If you like data about cities all in one place, this the app for you. Enter
+    <h1>Hello, Welcome to the City Data app. If you like data about cities all in one place, this is the app for you. Enter
         in a bunch of cities to find out the current temp and a bunch of information scraped from wikipedia.</h1>
 
     <div class="SetNumberOfCities">
         <form>
             <label for="numberOfCities">How many cities would you like to look up? (Enter a number between 1 and 20) </label>
             <input class="numberOfCitiesBox userInput" name="numberOfCities" id="numberOfCities" type="text" maxlength="2" autocomplete="off" autofocus>
-            <button type="button" id="createCityInputs"> Mouse Click to Submit
-
-            </button>
+            <button type="button" id="createCityInputs"> Mouse Click to Submit</button>
         </form>
     </div>
 
@@ -27,8 +25,8 @@
 <div class="grid box">
 </div>
 
-<h3> AutoSuggestions come from: https://simplemaps.com/data/us-cities</h3>
-<h3> Weather information comes from openweathermap.org API</h3>
+<h3> AutoSuggestions from: https://simplemaps.com/data/us-cities</h3>
+<h3> Weather information from openweathermap.org API</h3>
 <h3> All other information comes from scraping wikipedia</h3>
 
 
