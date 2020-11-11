@@ -1,8 +1,3 @@
-from city import CityInfo
-import time
-from weather import getWeather
-from wiki import GetWiki
-import csv_export
 import graph_data
 import order
 
@@ -32,15 +27,9 @@ while True:
         graphOption = ''
 
     menuChoice = input("""
-
-
-    
         1.) Enter a city, state (ex: 'Louisville, Kentucky') to find out information about it
-            or {}
-        
-            Type 'exit' to exit
-
-        
+            or {}       
+            Type 'exit' to exit      
 
         """.format(graphOption))
 

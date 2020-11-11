@@ -18,7 +18,7 @@ def graphPop(requestor="main"):
 
     plt.bar(x_pos, new_population, color='green')
     plt.xlabel("Cities")
-    plt.ylabel("Population")
+    plt.ylabel("Estimated Population")
     plt.title("Populations of Various Cities")
     plt.xticks(x_pos, cities)
     population_graph = plt.savefig('static/images/population.png')

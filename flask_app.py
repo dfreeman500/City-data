@@ -1,12 +1,5 @@
 from flask import (Flask, render_template, redirect, 
                     url_for, request, make_response, send_file)
-import weather
-import csv_export
-import city
-import wiki
-from weather import getWeather
-from wiki import GetWiki
-import csv_export
 import graph_data
 import order
 from threading import Thread #needed because mtaplotlib is called outside of main loop
