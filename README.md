@@ -6,6 +6,8 @@ A command line app (main.py) and a GUI flask app (flask_app.py) are available (g
 
 For the command line app, Matplotlib can read the csv and show bar graphs of estimated population and population density (not all cities provide this information).  The program works best for American cities. Each wikipedia page has varying information on each city.
 
+![flash_app.py](images/citydata_gif_1.gif) 
+
 #
 
 # Code Louisville Features Met:
