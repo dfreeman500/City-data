@@ -27,7 +27,7 @@ Example of flask_app.py
 
    or
 
-    run **flask_app.py** for GUI and to run batches with some autosuggestions. This option still produces a csv in the root directory, however, graphs are not available. If running flask_app.py, enter http://localhost:8000/ into web browser once program is running.
+    run **flask_app.py** for GUI and to run batches with some autosuggestions. This option still produces a csv in the root directory, however, graphs are not available. (Browser should automatically open to http://localhost:5000/)
 
     * Program written in Python 3.8.6
 

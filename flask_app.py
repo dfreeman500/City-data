@@ -59,14 +59,17 @@ def city_info():
     
     # print("These items did not return a result", entriesWithNoReturn)
     # print("These are items with no text: ", entriesWithNoText, len(entriesWithNoText))
-    
+    # argsForGraph= 'requestor="flask_app"'
     # try:
     #     avoidError1 = threading.Thread(target=graph_data.graphPop)
-    #     # avoidError1.setDaemon(True)
+    #     avoidError1.setDaemon(True)
     #     avoidError1.start()
+    # except Exception as err:
+    #     print("error with threading.Thread, ", err)
 
+    # try:
     #     avoidError2 = threading.Thread(target=graph_data.graphPopDensity)
-    #     # avoidError2.setDaemon(True)
+    #     avoidError2.setDaemon(True)
     #     avoidError2.start()
     # except Exception as err:
     #     print("error with threading.Thread, ", err)
@@ -82,4 +85,10 @@ def city_info():
 def downloadCSV ():
     return send_file("city_data.csv", as_attachment=True)
 
-app .run(debug=True, host = '0.0.0.0', port=8000)
+if __name__ == "__main__":
+    import webbrowser
+
+    webbrowser.open("http://localhost:5000/")
+    app.run(debug=True)
+
+# app .run(debug=True, host = '0.0.0.0', port=8000)

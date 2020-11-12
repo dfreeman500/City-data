@@ -11,7 +11,7 @@ function buildCityInputForm(numberOfCities) {
             `</li>`
     }
     html += `</ol>` + `<input type="submit"  value="submit" id="submitCities">` + '</form>' + '</div>';
-    cityInputs.innerHTML = html;  //injects the html into the div section
+    cityInputs.innerHTML = html;  //injects the html into the div
 }
 
 document.getElementById("createCityInputs").onclick = function () {
@@ -26,7 +26,6 @@ document.getElementById("createCityInputs").onclick = function () {
 
 // autosuggestion  for top ~1000 cities by population (in availableTags) provided by https://simplemaps.com/data/us-cities
 // https://api.jqueryui.com/autocomplete/  for function -match beginning, 
-
 // function (request, response) {
 //     var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(request.term), "i");
 //     response($.grep(availableTags, function (item) {

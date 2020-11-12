@@ -30,8 +30,7 @@ while True:
         1.) Enter a city, state (ex: 'Louisville, Kentucky') to find out information about it
             or {}       
             Type 'exit' to exit      
-
-        """.format(graphOption))
+        -->""".format(graphOption))
 
     if menuChoice.lower() == "exit" or menuChoice.lower()=="e":
         break
