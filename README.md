@@ -46,7 +46,7 @@ Example of flask_app.py
 * Create and call at least 3 functions, at least one of which must return a value that is used
     * multiple functions, termLineHeader() in search_array.py returns an array
 * Connect to an external/3rd party API and read data into your app
-    * validateByWeather() in city.py connects to openweathermap.org API
+    * validateByWeatherAPI() in city.py connects to openweathermap.org API
 * Visualize data in a graph, chart, or other visual representation of data
     * graph_data.py uses matplotlib and pandas to graph data from a csv
 * Implement a “scraper” that can be fed a type of file or URL and pull information off of it.
@@ -74,4 +74,4 @@ Example of flask_app.py
 * City data scraped from https://www.wikipedia.org/
 
 # Glitches
-* Some browsers may not always present the updated csv file for download from the link provided in flask web app. However, the updated .csv file will be available in /city_data.csv
+* In the Flask app, some browsers (i.e. MS Edge) may not always present the updated csv file for download from the link provided despite use of send_file( ,cache_timeout). However, the updated .csv file will be available in /city_data.csv

@@ -5,15 +5,9 @@ import order
 from threading import Thread #needed because mtaplotlib is called outside of main loop
 import threading
 import search_array
-
+import webbrowser
 
 app = Flask(__name__)
-
-cityList=[]
-cityBatch =[]
-wikiBatch = []
-firstRun = True 
-runMode = 'w'
 
 
 @app.route('/')
@@ -21,37 +15,35 @@ def index():
     return render_template("index.html")
 
 
-@app.route('/city_info',methods=['POST', 'GET']) #only be accessible if you POST to it
+@app.route('/city_info',methods=['POST']) 
 def city_info():
     firstRun = True 
     runMode = 'w'
-    wikiOutput=[]
-    cityList=[]
-    wikiBatch=[]
+    wikiOutput=[] #populated termLineHeader for single city 
+    cityList=[] #List of cities/inputs submitted by the user
+    wikiBatch=[] #Array of wikiOutputs
+    justHeader=[] #Header
 
-    data = dict(request.form)
+    data = dict(request.form) #gets flask data from the request form and puts it in a dict
     for x in data.values():
         cityList.append(x)
-    # print(cityList)
 
     for city in cityList:
         firstRun, runMode, wikiOutput, cityList, justHeader = order.orderOfOps(firstRun,runMode, menuChoice=city, cityList = cityList, requestor="flask_app")
         wikiBatch.append(wikiOutput) #puts the termLineHeader for each city into a batch
 
+    # Gets header information for city_info page
     unpopulatedTLH = search_array.termLineHeader("NoCity", "72")
     justHeader= [item[2] for item in unpopulatedTLH]
-    # print("this is justheader", justHeader)
     
-    validCitiesList = [] #
+    #Determines which of the inputs are considered valid, blank, or had no return info so it can inform the user on city_info.html
+    validCitiesList = [] 
     for item in wikiBatch:
         if len(item)>0:
-            # print(item)
             validCitiesList.append(item[0][4])
-    # print("Valid cities list:", validCitiesList)
-    # print(cityList)
     entriesWithNoReturn =[]
     entriesWithNoText=[]
-    for item in cityList:       #Find inputs that did not get return values and let the user know
+    for item in cityList:       
         if len(item)>0 and item.title() not in validCitiesList:
             entriesWithNoReturn.append(item)
         if len(item)<1:
@@ -76,19 +68,14 @@ def city_info():
     
     # graph_data.graphPopDensity(requestor="flask_app")
 
-
-
     return render_template("city_info.html", cityList=cityList, wikiBatch = wikiBatch, justHeader=justHeader, entriesWithNoReturn=entriesWithNoReturn, entriesWithNoText=entriesWithNoText, validCitiesList=validCitiesList)
 
-
-@app.route('/download',methods=['POST', 'GET']) #Download CSV file
+#Download CSV file - cache_timout=0 prevents sending the cached file on repeat download
+@app.route('/download',methods=['GET']) 
 def downloadCSV ():
-    return send_file("city_data.csv", as_attachment=True)
+    return send_file("city_data.csv", as_attachment=True, cache_timeout="-1") 
 
 if __name__ == "__main__":
-    import webbrowser
-
     webbrowser.open("http://localhost:5000/")
-    app.run(debug=True)
 
-# app .run(debug=True, host = '0.0.0.0', port=8000)
+app.run(debug=True,use_reloader=False)

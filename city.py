@@ -13,6 +13,7 @@ class CityInfo:
         response = requests.get("https://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid={}".format(self.cityState, api.openWeatherApi))
         return [ response.status_code, self.cityState, response.json()]
 
+
     #Prints the weather statement for the console app
     def printTemp(self, weather):
         self.weather = weather
@@ -24,11 +25,7 @@ class CityInfo:
         self.cityState = cityState
         self.temp = temp
 
-        # Instantiates variables that will be used in termLineHeader
-        City = self.cityState
-        Temp = self.temp
-        
-        termLineHeader=search_array.termLineHeader(City,Temp)
+        termLineHeader=search_array.termLineHeader(self.cityState,self.temp)
 
         #category and otherMembers - help the program determine if in the population, area, or other section as search terms are not unique between these areas
         category = "other" 
@@ -71,7 +68,6 @@ class CityInfo:
                                 cleaned_td = re.sub(r"\[\d+\]", " ", row.td.text) #removes citations numbers
                                 cleaned_td_stripped = cleaned_td.replace(u"\u2022","")
                                 print(item[1], cleaned_td_stripped)
-
                                 item[4] = cleaned_td_stripped
             except:
                 print("error")

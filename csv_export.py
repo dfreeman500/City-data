@@ -1,6 +1,5 @@
 import csv
 import os
-# from wiki import GetWiki
 
 #header - header for csv from item[2] from termLineHeader array
 #rowData - row data taken from item[4] from termLineHeader array
