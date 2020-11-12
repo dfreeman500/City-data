@@ -17,7 +17,6 @@ def orderOfOps(firstRun,runMode, menuChoice, cityList, requestor):
             temp = city.printTemp(responses[2])           
             wikiOutput, justHeader = city.returnWikiInfo(cityState = responses[1], temp=temp) #uses scraping of getWiki object just created to return the termLineHeader array as wikiOutput
             names_of_columns = justHeader
-            # names_of_columns.extend([i[2] for i in wikiOutput ])  #combine the two data list comprehensions/loops??
             data_for_columns = []
             data_for_columns.extend([i[4] for i in wikiOutput ])
             firstRun, runMode = csv_export.exportToCSV(names_of_columns, data_for_columns, firstRun, runMode) # runs the csv exporter and gives/gets info on mode and firstRun

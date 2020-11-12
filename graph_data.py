@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import pandas
+import os
 
 
 # DRY - have pop and popDensity send here to graph
@@ -8,7 +9,7 @@ def graphIt():
 
 #Graphs the population
 def graphPop(requestor="main"):
-    data = pandas.read_csv('city_data.csv')
+    data = pandas.read_csv(os.path.join(os.sys.path[0], 'city_data.csv'))
     cities = data.City.tolist()
     population = data.Estimated_Population.tolist()
     new_population = [str(i).replace(',', '').replace('nan','0') for i in population] #replace commas with '' and nan with 0
@@ -18,10 +19,10 @@ def graphPop(requestor="main"):
 
     plt.bar(x_pos, new_population, color='green')
     plt.xlabel("Cities")
-    plt.ylabel("Estimated Population")
+    plt.ylabel("Population")
     plt.title("Populations of Various Cities")
     plt.xticks(x_pos, cities)
-    population_graph = plt.savefig('static/images/population.png')
+    population_graph = plt.savefig(os.path.join(os.sys.path[0],'static/images/population.png'))
     if requestor == "main":
         plt.show()
     return population_graph
@@ -30,7 +31,7 @@ def graphPop(requestor="main"):
 
 #Graphs population density
 def graphPopDensity(requestor="main"):
-    data = pandas.read_csv('city_data.csv')
+    data = pandas.read_csv(os.path.join(os.sys.path[0], 'city_data.csv'))
     cities = data.City.tolist()
     population_density = data.Population_Density.tolist()
     new_population_density = [str(i).replace(',', '').replace('nan','0').split('/') for i in population_density] #replace commas with '' and nan with 0
@@ -46,7 +47,7 @@ def graphPopDensity(requestor="main"):
     plt.ylabel("Population Density per sq mi")
     plt.title("Population Densities of Various Cities")
     plt.xticks(x_pos, cities)
-    population_density_graph = plt.savefig('static/images/population_density.png')
+    population_density_graph = plt.savefig(os.path.join(os.sys.path[0],'static/images/population_density.png'))
 
     if requestor == "main":
         plt.show()

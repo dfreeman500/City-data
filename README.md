@@ -38,19 +38,19 @@ Example of flask_app.py
 * Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program 
     * main.py has a master loop 
 * Create a class, then create at least one object of that class and populate it with data
-    * city.py and wiki.py utilize a class
+    * city.py utilizes a class
 * Create a dictionary or list, populate it with several values, retrieve at least one value, and use it in your program
-    * main.py uses cityList variable to store list of cities, wiki.py uses termLineHeader array to temporarily store scraped data
+    * main.py uses cityList variable to store list of cities, search_array.py uses termLineHeader array to temporarily store scraped data
 * Read data from an external file, such as text, JSON, CSV, etc and use that data in your application
     * graph_data.py reads city_data.csv to display bar graphs
 * Create and call at least 3 functions, at least one of which must return a value that is used
-    * multiple functions, wiki.py has returnWikiInfo which returns termLineHeader array
+    * multiple functions, termLineHeader() in search_array.py returns an array
 * Connect to an external/3rd party API and read data into your app
-    * weather.py connects to openweathermap.org API
+    * validateByWeather() in city.py connects to openweathermap.org API
 * Visualize data in a graph, chart, or other visual representation of data
     * graph_data.py uses matplotlib and pandas to graph data from a csv
 * Implement a “scraper” that can be fed a type of file or URL and pull information off of it.
-    * Bs4 is used to scrape wikipedia information
+    * Bs4 is used to scrape wikipedia information in the city.py
 * Other features 
     * Flask app
 
@@ -62,7 +62,6 @@ Example of flask_app.py
 #
 
 * **Future directions:** 
-    * better use of files and classes to better logically stream line app
     * ability to take zip codes
     * convert state abbreviations to full state names
     * Only return unique cities
