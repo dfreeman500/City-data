@@ -9,6 +9,10 @@ A command line app (main.py) and a GUI flask app (flask_app.py) are available an
 Example of flask_app.py (click image for better quality gif)
 ![flash_app.py](images/citydata_gif_2.gif) 
 
+#
+Example of main.py (click image for better quality gif)
+![main.py](images/citydata_gif_3.gif) 
+
 
 #
 # Instructions:
