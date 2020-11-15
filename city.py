@@ -19,7 +19,7 @@ class CityInfo:
         self.weather = weather
         blue="\033[0;34m"
         end="\033[0m"
-        print(blue +"-"*100 +end)
+        print(blue +"*"*100 +end)
         print("The temperature in {} is {} degrees Fahrenheit but it feels like {}.".format(self.cityState, self.weather["main"]["temp"],self.weather["main"]["feels_like"] ))
         return self.weather["main"]["temp"]
 

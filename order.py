@@ -1,6 +1,10 @@
 from city import CityInfo
 import csv_export
 
+redb = "\033[0;31m"
+end="\033[0m"
+
+
 #order of operations for both main.py and flask_app.py
 def orderOfOps(firstRun,runMode, menuChoice, cityList, requestor):
     cityOutput=[]
@@ -9,7 +13,7 @@ def orderOfOps(firstRun,runMode, menuChoice, cityList, requestor):
     responses = city.validateByWeatherAPI()  #returns [ response.status_code, cityState, response.json()]
 
     if responses[0] != 200:
-        print("You entered {} but that returned an error {}. You may have misspelled the city, state -  Please try again. Please use the format of 'Louisville, Kentucky'".format(responses[1], responses[0]))
+        print(redb+ "You entered '{}' but that returned an error {}. You may have misspelled the city, state -  Please try again. Please use the format of 'Louisville, Kentucky'".format(responses[1], responses[0]) + end)
         cityList
         cityOutput=[]
     else:
@@ -23,24 +27,25 @@ def orderOfOps(firstRun,runMode, menuChoice, cityList, requestor):
             if requestor =="main":
                 cityList.append(responses[1])
         except ValueError as err:
-            print(err, "There was value error in Main.py")
+            print(redb + str(err) + "There was value error in Main.py" + end)
 
         except PermissionError as err:
-            print("""
+            print(redb + """
             
-            Permission was denied. Is the Excel file open?
+            Permission was denied. Unable to save to city_data.csv Is the file open?
             
-            """, err)             
+            """, str(err) + end)             
         except AttributeError as err:
-            print(err, """
+            print(redb+ str(err)+ """
             
-            The Openweather api may have determined or converted your input as a valid city, but the url above
+            The Openweather api may have determined or converted your input as a valid location, but the wikipedia url above
             lacks the HTML structure needed to scrape city information effectively. It was not added to the csv file.
 
-            """)
+            """+ end)
         except UnboundLocalError as err:
-            print(err, """
-                That city wasn't found
-            """)
+            print(redb+ str(err) + """
+                variable referenced before assignment
+            """ +end)
+
                 
     return firstRun, runMode, cityOutput, cityList, justHeader

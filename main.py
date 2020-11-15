@@ -13,7 +13,12 @@ runMode = 'w'
 cityList = [] #keeps track of cities that have been stored into the csv file
 
 print(redb + """
-        Welcome to the City-data app. Find out information about a city (ex: Miami, Florida)
+        Welcome to the City-data app, where you can find out all kinds of information about a city! 
+        This app allows the user to get data on a city using the Openweather API and webscraping 
+        from wikipedia. You enter a city and state and the openweather api searches for the temperature. 
+        If the input is 'valid' and a temperature is returned, the program generates a wikipedia url. If the 
+        url is valid and has enough structure for scraping, the program scrapes the information from the page 
+        and stores the info into a csv file (city_data.csv).
 """ + end )
 
 while True:
@@ -32,14 +37,15 @@ while True:
     menuChoice = input(yellow + " "*8 + """="""*100 + end + """
         1.) Enter a city, state (ex: 'Miami, Florida') to find out information about it
             or {}       
-            Type 'exit' to exit      
-        --> """.format(graphOption) + end)
+            Type 'exit' to exit
+        """.format(graphOption)+ yellow + 
+    """-->""")
 
     if menuChoice.lower() == "exit" or menuChoice.lower()=="e":
         break
 
     if menuChoice == '2' and len(cityList)>0:
-        print(blue + "-" *50 +end)
+        print(blue + "*" *50 +end)
         print("Number of cities with data in the csv file: {}".format(len(cityList)))
         for city in enumerate(cityList, start = 1):
             print(city)
