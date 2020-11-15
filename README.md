@@ -15,7 +15,7 @@ Example of flask_app.py (click image for better quality gif)
 
 1. **Clone the repo**
 2. **Create an api.py file in the main directory and copy and paste the openWeatherApi variable (ex: ' openWeatherApi = "abc123" ') that is given to you into the file and save.**
-3. **PIP install the following or use requirements.txt ( pip install -r requirements.txt):**
+3. **pip install -r requirements.txt**
 4. Run **main.py** for a command line program
 
    or
