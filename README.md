@@ -7,7 +7,7 @@ A command line app (main.py) and a GUI flask app (flask_app.py) are available an
 
 #
 Example of flask_app.py (click image for better quality gif)
-![flash_app.py](images/citydata_gif_1.gif) 
+![flash_app.py](images/citydata_gif_2.gif) 
 
 
 #
@@ -56,16 +56,19 @@ Example of flask_app.py (click image for better quality gif)
 
 #
 
-* **Future directions:** 
+# Future directions: 
     * ability to take zip codes
     * convert state abbreviations to full state names
     * Only return unique cities
 
+#
 
 # Declarations/Thanks:
 * Temperature provided by https://openweathermap.org/api 
 * City/state suggestion list taken from:  https://simplemaps.com/data/us-cities.
 * City data scraped from https://www.wikipedia.org/
+
+#
 
 # Glitches
 * In the Flask app, some browsers (i.e. MS Edge) may not always present the updated csv file for download from the link provided despite use of send_file(cache_timeout). However, the updated .csv file will be available in /city_data.csv
