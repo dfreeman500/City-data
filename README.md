@@ -51,9 +51,9 @@ Example of flask_app.py (click image for better quality gif)
 #
 
 # Future directions: 
-    * ability to take zip codes
-    * convert state abbreviations to full state names
-    * Only return unique cities
+* ability to take zip codes
+* convert state abbreviations to full state names
+* Only return unique cities
 
 #
 

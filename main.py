@@ -1,17 +1,20 @@
 import graph_data
 import order
 
+redb = "\033[0;31m"
+yellow="\033[0;33m"
+blue="\033[0;34m"
+end="\033[0m"
+
 # firstRun and runMode are for csv exporter so header is only exported the first time
 firstRun = True 
 runMode = 'w'
 
 cityList = [] #keeps track of cities that have been stored into the csv file
 
-print("""
+print(redb + """
         Welcome to the City-data app. Find out information about a city (ex: Miami, Florida)
-        
-
-""")
+""" + end )
 
 while True:
     if len(cityList)>0:
@@ -26,16 +29,17 @@ while True:
     else:
         graphOption = ''
 
-    menuChoice = input("""
+    menuChoice = input(yellow + " "*8 + """="""*100 + end + """
         1.) Enter a city, state (ex: 'Miami, Florida') to find out information about it
             or {}       
             Type 'exit' to exit      
-        --> """.format(graphOption))
+        --> """.format(graphOption) + end)
 
     if menuChoice.lower() == "exit" or menuChoice.lower()=="e":
         break
 
     if menuChoice == '2' and len(cityList)>0:
+        print(blue + "-" *50 +end)
         print("Number of cities with data in the csv file: {}".format(len(cityList)))
         for city in enumerate(cityList, start = 1):
             print(city)

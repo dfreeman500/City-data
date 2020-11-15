@@ -35,7 +35,7 @@ def orderOfOps(firstRun,runMode, menuChoice, cityList, requestor):
             print(err, """
             
             The Openweather api may have determined or converted your input as a valid city, but the url above
-            lacks the HTML structure needed to scrape information effectively. It was not added to the csv file.
+            lacks the HTML structure needed to scrape city information effectively. It was not added to the csv file.
 
             """)
         except UnboundLocalError as err:
