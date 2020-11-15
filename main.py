@@ -1,7 +1,7 @@
 import graph_data
 import order
 
-redb = "\033[0;31m"
+red = "\033[0;31m"
 yellow="\033[0;33m"
 blue="\033[0;34m"
 end="\033[0m"
@@ -12,7 +12,7 @@ runMode = 'w'
 
 cityList = [] #keeps track of cities that have been stored into the csv file
 
-print(redb + """
+print(red + """
         Welcome to the City-data app, where you can find out all kinds of information about a city! 
         This app allows the user to get data on a city using the Openweather API and webscraping 
         from wikipedia. You enter a city and state and the openweather api searches for the temperature. 
