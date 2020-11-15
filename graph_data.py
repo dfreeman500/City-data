@@ -29,6 +29,7 @@ def graphPop():
     plt.ylabel("Population")
     plt.title("Populations of Various Cities")
     plt.xticks(x_pos, cities)
+    plt.xticks(rotation=10)
     plt.show()
 
 #allows cleaning of data to be used by main (matplotlib) and flask_app (Bokeh)
@@ -52,6 +53,8 @@ def graphPopDensity():
     plt.ylabel("Population Density per sq mi")
     plt.title("Population Densities of Various Cities")
     plt.xticks(x_pos, cities)
+    plt.xticks(rotation=10)
+
     plt.show()
 
 
