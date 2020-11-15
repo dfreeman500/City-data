@@ -8,7 +8,7 @@ runMode = 'w'
 cityList = [] #keeps track of cities that have been stored into the csv file
 
 print("""
-        Welcome to the City-data app. Find out information about a city (ex: Lexington, Kentucky)
+        Welcome to the City-data app. Find out information about a city (ex: Miami, Florida)
         
 
 """)
@@ -27,7 +27,7 @@ while True:
         graphOption = ''
 
     menuChoice = input("""
-        1.) Enter a city, state (ex: 'Louisville, Kentucky') to find out information about it
+        1.) Enter a city, state (ex: 'Miami, Florida') to find out information about it
             or {}       
             Type 'exit' to exit      
         --> """.format(graphOption))
@@ -42,15 +42,15 @@ while True:
         continue
 
     if menuChoice =='3' and len(cityList)>0:
-        graph_data.graphPop("main")
+        graph_data.graphPop()
         continue
 
     if menuChoice =='4' and len(cityList)>0:
-        graph_data.graphPopDensity("main")
+        graph_data.graphPopDensity()
         continue
 
     else:
-        firstRun, runMode, menuChoice, cityList, justHeader = order.orderOfOps(firstRun,runMode, menuChoice, cityList, requestor="main")
+        firstRun, runMode, menuChoice, cityList, justHeader = order.orderOfOps(firstRun, runMode, menuChoice, cityList, requestor="main")
         
 
         

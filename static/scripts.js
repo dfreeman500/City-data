@@ -14,6 +14,7 @@ function buildCityInputForm(numberOfCities) {
     cityInputs.innerHTML = html;  //injects the html into the div
 }
 
+// Responds to click event and checks validates input
 document.getElementById("createCityInputs").onclick = function () {
     numberOfCities = document.getElementById("numberOfCities").value
     if (numberOfCities > 0 && numberOfCities < 21 && Number.isInteger(Number(numberOfCities))) {

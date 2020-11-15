@@ -1,47 +1,58 @@
 {% extends "base.html" %}
 
 {% block title %} {{ super() }}{% endblock %}
-<link rel = "stylesheet" href = "/static/styles.css">
+<link rel="stylesheet" href="/static/styles.css">
 </head>
 
-    {% block content %}
-    {{ super() }}
+{% block content %}
+{{ super() }}
 
-    <div>
-        <h4 style="color: blue">{{validCitiesList|length + entriesWithNoReturn|length + entriesWithNoText|length  }} input field(s) were requested</h4>
-        {% if entriesWithNoReturn|length > 0 %}
-        <h4 style="color:red">{{ entriesWithNoReturn|length }} input(s) did not return a result: {{ entriesWithNoReturn }}</h4>
-        {% endif %}
-        {% if entriesWithNoText|length > 0 %}
-        <h4 style="color:red">{{ entriesWithNoText|length }} input field(s) were blank</h4>
-        {% endif %}
-        <h4 style="color: blue">{{validCitiesList|length}} result(s) were returned below</h4>
-    </div>
+<div>
+    <h4 style="color: blue">{{validCitiesList|length + entriesWithNoReturn|length + entriesWithNoText|length  }} input
+        field(s) were requested</h4>
+    {% if entriesWithNoReturn|length > 0 %}
+    <h4 style="color:red">{{ entriesWithNoReturn|length }} input(s) did not return a result: {{ entriesWithNoReturn }}
+    </h4>
+    {% endif %}
+    {% if entriesWithNoText|length > 0 %}
+    <h4 style="color:red">{{ entriesWithNoText|length }} input field(s) were blank</h4>
+    {% endif %}
+    <h4 style="color: blue">{{validCitiesList|length}} result(s) were returned below</h4>
+</div>
 
-    <table style="margin-left: 15px;"> 
-        <tr style="color: green; font-weight: bold;">     
-            {% for item in justHeader %}
-            <th style=" border: 1px solid black;">{{ item }}</th> 
-            {% endfor %}                   
-        </tr> 
-        <tr> 
-            {% for wiki in wikiBatch %}
-            {% for line in wiki %}
-            <td style=" border: 1px solid blue;">{{ line[4] }}</td> 
-            {% endfor %}
-        </tr> 
-            {% endfor %}
-    </table> 
+<table style="margin-left: 15px;">
+    <tr style="color: green; font-weight: bold;">
+        {% for item in justHeader %}
+        <th style=" border: 1px solid black;">{{ item }}</th>
+        {% endfor %}
+    </tr>
+    <tr>
+        {% for city in cityBatch %}
+        {% for line in city %}
+        <td style=" border: 1px solid blue;">{{ line[4] }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+<p></p>
+{{ js_resources|indent(4)|safe }}
+{{ css_resources|indent(4)|safe }}
+{{ plot_script1|indent(4)|safe }}
+{{ plot_div1|indent(4)|safe }}
 
-    <!-- <img src="/static/images/population.png" alt="Chart" height="auto" width="100%">
-    <img src="/static/images/population_density.png" alt="Chart" height="auto" width="100%"> -->
-    <p>
+<p></p>
+
+<!-- {{ js_resources|indent(4)|safe }}
+    {{ css_resources|indent(4)|safe }} -->
+{{ plot_script2|indent(4)|safe }}
+{{ plot_div2|indent(4)|safe }}
+
+<p></p>
+<p>
     <a href="/">Go back to the index page</a>
+    {% if validCitiesList|length > 0 %}
     <a href="/download">Download the csv file with the city data</a>
-    </p>
-    {% endblock %}
-    {%block scripts%}{{ super() }}    {%endblock%}
-
-
-  
-
+    {% endif %}
+</p>
+{% endblock %}
+{%block scripts%}{{ super() }} {%endblock%}

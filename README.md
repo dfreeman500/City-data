@@ -2,12 +2,11 @@
 
 This app allows the user to get data on a city (or cities) using the Openweather API and webscraping from wikipedia. You enter a city and state and the openweather api searches for the temperature. If the input is valid and a temperature is returned, the program generates a wikipedia url. If the url is valid and has enough structure for scraping, the program scrapes the information from the page and stores the info into a csv file (city_data.csv). 
 
-A command line app (main.py) and a GUI flask app (flask_app.py) are available (graphs not available on flask.app.py)
+A command line app (main.py) and a GUI flask app (flask_app.py) are available and both are able to show graphs of estimated population and population density (not all cities have this info). The program works best for American cities. 
 
-For the command line app, Matplotlib can read the csv and show bar graphs of estimated population and population density (not all cities provide this information).  The program works best for American cities. Each wikipedia page has varying information on each city.
 
 #
-Example of flask_app.py
+Example of flask_app.py (click image for better quality gif)
 ![flash_app.py](images/citydata_gif_1.gif) 
 
 
@@ -23,11 +22,11 @@ Example of flask_app.py
     * matplotlib == 3.3.2
     * pandas == 1.1.0
     * Flask == 1.1.2
-4. Run **main.py** for a command line program (ability to see graphs of estimated population and population density when available).
+4. Run **main.py** for a command line program
 
    or
 
-    run **flask_app.py** for GUI and to run batches with some autosuggestions. This option still produces a csv in the root directory, however, graphs are not available. (Browser should automatically open to http://localhost:5000/)
+    run **flask_app.py** for GUI and to run batches with some autosuggestions. (Browser should automatically open to http://localhost:5000/)
 
     * Program written in Python 3.8.6
 
@@ -48,15 +47,11 @@ Example of flask_app.py
 * Connect to an external/3rd party API and read data into your app
     * validateByWeatherAPI() in city.py connects to openweathermap.org API
 * Visualize data in a graph, chart, or other visual representation of data
-    * graph_data.py uses matplotlib and pandas to graph data from a csv
+    * graph_data.py uses matplotlib and pandas to graph data from a csv, flask_app.py uses Bokeh for visualization
 * Implement a “scraper” that can be fed a type of file or URL and pull information off of it.
     * Bs4 is used to scrape wikipedia information in the city.py
 * Other features 
-    * Flask app
-
-
-
-
+    * Flask app, Bokeh graph visualization
 
 
 #
@@ -65,7 +60,6 @@ Example of flask_app.py
     * ability to take zip codes
     * convert state abbreviations to full state names
     * Only return unique cities
-    * Ability to print matplotlib to flask web app. Not able to do this consistently seemingly due to known threading issue (matplotlib likes to be run in the main loop)
 
 
 # Declarations/Thanks:
@@ -74,4 +68,4 @@ Example of flask_app.py
 * City data scraped from https://www.wikipedia.org/
 
 # Glitches
-* In the Flask app, some browsers (i.e. MS Edge) may not always present the updated csv file for download from the link provided despite use of send_file( ,cache_timeout). However, the updated .csv file will be available in /city_data.csv
+* In the Flask app, some browsers (i.e. MS Edge) may not always present the updated csv file for download from the link provided despite use of send_file(cache_timeout). However, the updated .csv file will be available in /city_data.csv

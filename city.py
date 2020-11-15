@@ -36,7 +36,6 @@ class CityInfo:
         soup = BeautifulSoup(r.text, features='lxml')
         table = soup.find('table', attrs={'class':'infobox geography vcard'})
         print(url)
-        # print(table.prettify())
         for row in table.find_all('tr')[1:]: #finds table rows
             try:
                 #This section checks the beginning portion of the row to determine what category to set
