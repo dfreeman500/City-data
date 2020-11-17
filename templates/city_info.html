@@ -8,7 +8,7 @@
 {{ super() }}
 
 <div>
-    <h4 style="color: blue">{{validCitiesList|length + entriesWithNoReturn|length + entriesWithNoText|length  }} input
+    <h4 style="color: blue">{{cityList|length  }} input
         field(s) were requested</h4>
     {% if entriesWithNoReturn|length > 0 %}
     <h4 style="color:red">{{ entriesWithNoReturn|length }} input(s) did not return a result: {{ entriesWithNoReturn }}
@@ -16,6 +16,10 @@
     {% endif %}
     {% if entriesWithNoText|length > 0 %}
     <h4 style="color:red">{{ entriesWithNoText|length }} input field(s) were blank</h4>
+    {% endif %}
+    {% if duplicateEntries|length > 0 %}
+    <h4 style="color:red">{{ duplicateEntries|length }} were duplicate entries {{ duplicateEntries }}
+    </h4>
     {% endif %}
     <h4 style="color: blue">{{validCitiesList|length}} result(s) were returned below</h4>
 </div>

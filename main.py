@@ -26,7 +26,7 @@ while True:
         graphOption = """  
         2.) Type '2' to see a history of cities that have been loaded into the csv.
             or
-        3.) Type '3' to see a graph of estimated populations (some cities on wikipedia do not show estimated population).
+        3.) Type '3' to see a graph of estimated populations"""+ yellow +" (some cities on wikipedia do not show estimated population)."""+end+"""
             or
         4.) Type '4' to see a graph of population density for the different cities.
             or

@@ -30,9 +30,16 @@ def city_info():
     for x in data.values():
         cityList.append(x)
 
+    tempDuplicateCheck=[]
+    duplicateEntries=[]
+
     for city in cityList:
-        firstRun, runMode, cityOutput, cityList, justHeader = order.orderOfOps(firstRun,runMode, menuChoice=city, cityList = cityList, requestor="flask_app")
-        cityBatch.append(cityOutput) #puts the termLineHeader for each city into a batch
+        if city in tempDuplicateCheck:
+            duplicateEntries.append(city)
+        else:
+            tempDuplicateCheck.append(city)
+            firstRun, runMode, cityOutput, cityList, justHeader = order.orderOfOps(firstRun,runMode, menuChoice=city, cityList = cityList, requestor="flask_app")
+            cityBatch.append(cityOutput) #puts the termLineHeader for each city into a batch
 
     # Gets header information for city_info page (particularly important if first city is not valid)
     unpopulatedTLH = search_array.termLineHeader("NoCity", "72")
@@ -45,8 +52,11 @@ def city_info():
     validCitiesList = [] 
     estimatedPopulationList = []
     populationDensityList = []
+
     for city in cityBatch:
         if len(city)>0:
+            print(city)
+            print(city[0][4])
             validCitiesList.append(city[0][4])
             estimatedPopulationList.append(city[9][4])
             populationDensityList.append(city[11][4])
@@ -118,7 +128,7 @@ def city_info():
     return render_template("city_info.html", cityList=cityList, cityBatch = cityBatch, justHeader=justHeader, 
         entriesWithNoReturn=entriesWithNoReturn, entriesWithNoText=entriesWithNoText, validCitiesList=validCitiesList, 
         plot_script1=script1, plot_div1=div1, plot_script2=script2, plot_div2=div2, js_resources=js_resources, 
-        css_resources=css_resources, cache_timeout=0)
+        css_resources=css_resources, duplicateEntries=duplicateEntries, cache_timeout=0)
 
 #Download CSV file - cache_timout=0 prevents sending the cached file on repeat download
 @app.route('/download',methods=['GET']) 
