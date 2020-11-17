@@ -18,7 +18,8 @@ print(red + """
         from wikipedia. You enter a city and state and the openweather api searches for the temperature. 
         If the input is 'valid' and a temperature is returned, the program generates a wikipedia url. If the 
         url is valid and has enough structure for scraping, the program scrapes the information from the page 
-        and stores the info into a csv file (city_data.csv).
+        and stores the info into a csv file (city_data.csv). Each city provides different information so specific
+        fields may not always be available.
 """ + end )
 
 while True:
@@ -60,7 +61,12 @@ while True:
         continue
 
     else:
-        firstRun, runMode, menuChoice, cityList, justHeader = order.orderOfOps(firstRun, runMode, menuChoice, cityList, requestor="main")
+        collapsedInput = menuChoice.title().replace(' ','')
+        collapsedList = [i.replace(' ','') for i in cityList]
+        if collapsedInput in collapsedList:
+            print("{} was already entered - it was not added to the csv".format(menuChoice))
+        else:
+            firstRun, runMode, menuChoice, cityList, justHeader = order.orderOfOps(firstRun, runMode, menuChoice, cityList, requestor="main")
         
 
         
