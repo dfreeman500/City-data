@@ -25,7 +25,7 @@ def termLineHeader(city, temp):
 
         ["Total", "The total population is", "Total_Population", "pop", Total_Population],
         ["Estimate", "The total estimated population is", "Estimated_Population", "pop", Estimated_Population],
-        ["Consolidated", "The consolidated population is", "Consolidated_Population", "pop", Consolidated_Population],
+        # ["Consolidated", "The consolidated population is", "Consolidated_Population", "pop", Consolidated_Population],
         # ["Rank", "The city's population rank is ", "Population_Rank", "pop", Population_Rank],
         ["Density", "The city's population density is", "Population_Density", "pop", Population_Density],
 

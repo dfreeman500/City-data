@@ -55,11 +55,9 @@ def city_info():
 
     for city in cityBatch:
         if len(city)>0:
-            print(city)
-            print(city[0][4])
             validCitiesList.append(city[0][4])
             estimatedPopulationList.append(city[9][4])
-            populationDensityList.append(city[11][4])
+            populationDensityList.append(city[10][4])
 
     estimatedPopulationList = graph_data.cleanPopInput(estimatedPopulationList)
     populationDensityList = graph_data.cleanPopDensityInput(populationDensityList)
