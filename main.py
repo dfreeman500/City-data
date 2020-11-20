@@ -45,18 +45,18 @@ while True:
     if menuChoice.lower() == "exit" or menuChoice.lower()=="e":
         break
 
-    if menuChoice == '2' and len(cityList)>0:
+    elif menuChoice == '2' and len(cityList)>0:
         print(blue + "*" *50 +end)
         print("Number of cities with data in the csv file: {}".format(len(cityList)))
         for city in enumerate(cityList, start = 1):
             print(city)
         continue
 
-    if menuChoice =='3' and len(cityList)>0:
+    elif menuChoice =='3' and len(cityList)>0:
         graph_data.graphPop()
         continue
 
-    if menuChoice =='4' and len(cityList)>0:
+    elif menuChoice =='4' and len(cityList)>0:
         graph_data.graphPopDensity()
         continue
 
