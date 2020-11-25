@@ -38,6 +38,7 @@ class CityInfo:
         r = requests.get(url)
         soup = BeautifulSoup(r.text, features='lxml')
         table = soup.find('table', attrs={'class':'infobox geography vcard'})
+
         print(url)
         for row in table.find_all('tr')[1:]: #finds table rows
             try:
@@ -69,6 +70,7 @@ class CityInfo:
                             if row.text != '': #Only print for info that is present
                                 cleaned_td = re.sub(r"\[\d+\]", " ", row.td.text) #removes citations numbers
                                 cleaned_td_stripped = cleaned_td.replace(u"\u2022","")
+                                cleaned_td_stripped = cleaned_td.replace("\xa0"," ") #removes nonbreaking space
                                 print(item[1], cleaned_td_stripped)
                                 item[4] = cleaned_td_stripped
             except:

@@ -1,5 +1,6 @@
 import graph_data
 import order
+from cityDatabase import dbLoop
 
 red = "\033[0;31m"
 yellow="\033[0;33m"
@@ -31,6 +32,7 @@ while True:
             or
         4.) Type '4' to see a graph of population density for the different cities.
             or
+        5.) Type '5' to access the database of cities
         """
     else:
         graphOption = ''
@@ -60,7 +62,12 @@ while True:
         graph_data.graphPopDensity()
         continue
 
+    elif menuChoice =='5' and len(cityList)>0:
+        dbLoop()
+        continue
+
     else:
+        #checks for obvious duplicate from current run
         collapsedInput = menuChoice.title().replace(' ','')
         collapsedList = [i.replace(' ','') for i in cityList]
         if collapsedInput in collapsedList:

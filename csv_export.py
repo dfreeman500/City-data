@@ -5,8 +5,10 @@ import os
 #rowData - row data taken from item[4] from termLineHeader array
 #runMode - sets 'w' vs 'a' depending on the first run of export
 
-def exportToCSV(header, rowData, firstRun, runMode):
-    with open(os.path.join(os.sys.path[0], 'city_data.csv'), mode=runMode , encoding="utf-8-sig") as csv_file: #Tries to create csv in the same directory as .py files
+#csv exports done per session ('city_data.csv') but also for exporting the persisting db ('city_data_db.csv')
+
+def exportToCSV(header, rowData, firstRun, runMode, filename):
+    with open(os.path.join(os.sys.path[0], filename), mode=runMode , encoding="utf-8-sig") as csv_file: #Tries to create csv in the same directory as .py files
         linewriter = csv.writer(csv_file, lineterminator='\n')
         if firstRun == True: # prints header info if it is running for the first time
             linewriter.writerow(header) 

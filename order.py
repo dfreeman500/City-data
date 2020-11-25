@@ -1,5 +1,6 @@
 from city import CityInfo
 import csv_export
+from cityDatabase import dbEntry
 
 red = "\033[0;31m"
 end="\033[0m"
@@ -9,7 +10,7 @@ end="\033[0m"
 def orderOfOps(firstRun,runMode, menuChoice, cityList, requestor):
     cityOutput=[]
     justHeader=[]
-    city = CityInfo(menuChoice.title()) #Creates instance of CityInfor class
+    city = CityInfo(menuChoice.title()) #Creates instance of CityInfo class
     responses = city.validateByWeatherAPI()  #returns [ response.status_code, cityState, response.json()]
 
     if responses[0] != 200:
@@ -23,9 +24,10 @@ def orderOfOps(firstRun,runMode, menuChoice, cityList, requestor):
             names_of_columns = justHeader
             rowData = []
             rowData.extend([i[4] for i in cityOutput ])
-            firstRun, runMode = csv_export.exportToCSV(names_of_columns, rowData, firstRun, runMode) # runs the csv exporter and gives/gets info on mode and firstRun
+            firstRun, runMode = csv_export.exportToCSV(names_of_columns, rowData, firstRun, runMode, filename='city_data.csv') # runs the csv exporter and gives/gets info on mode and firstRun
             if requestor =="main":
                 cityList.append(responses[1])
+            dbEntry(justHeader, rowData)
         except ValueError as err:
             print(red + str(err) + "There was value error in Main.py" + end)
 

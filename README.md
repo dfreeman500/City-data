@@ -1,8 +1,8 @@
 # City-data
 
-This app allows the user to get data on cities using the Openweather API and webscraping from wikipedia. You enter a city and state and the openweather api searches for the temperature. If the input is valid and a temperature is returned, the program generates a wikipedia url. If the url is valid and has enough structure for scraping, the program scrapes the information from the page and stores the info into a csv file (city_data.csv). 
+This app allows the user to get data on cities using the Openweather API and webscraping from wikipedia. You enter a city and state and the openweather api searches for the temperature. If the input is valid and a temperature is returned, the program generates a wikipedia url. If the url is valid and has enough structure for scraping with BeautifulSoup, the program scrapes the information from the page and stores the info into a csv file (city_data.csv). 
 
-A command line app (main.py) and a GUI flask app (flask_app.py) are available and both are able to show graphs of estimated population and population density **(not all cities have this info)**. The program works best for American cities. 
+A command line app (main.py) and a GUI flask app (flask_app.py) are available and both are able to show graphs of estimated population and population density **(not all cities have this info)**, export info to csv, and export info to a db for persisting data. The program works best for American cities. 
 
 
 #
@@ -30,26 +30,14 @@ Example of main.py (click image for better quality gif)
 
 #
 
-# Code Louisville Features Met:
+# Features:
 
-* Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program 
-    * main.py has a master loop 
-* Create a class, then create at least one object of that class and populate it with data
-    * city.py utilizes a class
-* Create a dictionary or list, populate it with several values, retrieve at least one value, and use it in your program
-    * main.py uses cityList variable to store list of cities, search_array.py uses termLineHeader array to temporarily store scraped data
-* Read data from an external file, such as text, JSON, CSV, etc and use that data in your application
-    * graph_data.py reads city_data.csv to display bar graphs
-* Create and call at least 3 functions, at least one of which must return a value that is used
-    * multiple functions, termLineHeader() in search_array.py returns an array
-* Connect to an external/3rd party API and read data into your app
-    * validateByWeatherAPI() in city.py connects to openweathermap.org API
-* Visualize data in a graph, chart, or other visual representation of data
-    * graph_data.py uses matplotlib and pandas to graph data from a csv, flask_app.py uses Bokeh for visualization
-* Implement a “scraper” that can be fed a type of file or URL and pull information off of it.
-    * Bs4 is used to scrape wikipedia information in city.py
-* Other features 
-    * Flask app, Bokeh graph visualization
+* Flask App:
+    flask_app.py allows for entry and lookup of up to 20 cities in a webform at a time. Autosuggestions are provided for cities with high population levels in the US. Obvious duplicates are excluded from results. Graphs (via **bokeh**) are provided for population density and estimated population if that information is available. A city_data.csv link is provided for download with the information just obtained about the different cities in that session. Each city and resulting information is also placed in cityDatabase.db. This **SQLite db** can be edited in the CLI mode. 
+
+* CLI:
+    main.py allows for individual entry of cities. Each city that returns valid information will be added to city_data.csv (obvious duplicates are excluded) and cityDatabase.db . The city_data.csv is created for each new session. The cityDatbase.db persists across sessions and also includes cities obtained from the flask app. In order to view the db, delete records, edit records, and export to a csv, at least one valid city most be entered via the CLI. One reason to edit a record could be to add "Demonym" information for a city in which wikipedia doesn't have this info. Graphs (via **matplotlib**) are possible for population density and estimated population.  
+
 
 
 #

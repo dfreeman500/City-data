@@ -3,3 +3,5 @@ api.py
 testingzone.py
 city_data.csv
 settings.json
+city_data_db.csv
+cityDatabase.db

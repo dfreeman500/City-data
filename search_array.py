@@ -2,6 +2,8 @@
 #Each item in termLineHeader has: search (1)TERM, (2)LINE to print, (3)HEADER for csv file/flask app, (4)CATEGORY - for scraping, 
 # (5)VARIABLE to store scraped info. Placing in separate file allows easier access for flask_app
 
+#uncommenting variables/lines in the array will have effects in the db as well as for graphing (ex: changes index)
+
 
 def termLineHeader(city, temp):
     City=city
