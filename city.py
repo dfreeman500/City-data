@@ -37,7 +37,7 @@ class CityInfo:
         url = ''.join(['https://en.wikipedia.org/wiki/', self.cityState]).replace(' ', '_')
         r = requests.get(url)
         soup = BeautifulSoup(r.text, features='lxml')
-        table = soup.find('table', attrs={'class':'infobox geography vcard'})
+        table = soup.find('table', attrs={'class':'infobox ib-settlement vcard'})
 
         print(url)
         for row in table.find_all('tr')[1:]: #finds table rows

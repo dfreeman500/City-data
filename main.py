@@ -28,11 +28,9 @@ while True:
         graphOption = """  
         2.) Type '2' to see a history of cities that have been loaded into the csv.
             or
-        3.) Type '3' to see a graph of estimated populations"""+ yellow +" (some cities on wikipedia do not show estimated population)."""+end+"""
+        3.) Type '3' to see a graph of population density for the different cities.
             or
-        4.) Type '4' to see a graph of population density for the different cities.
-            or
-        5.) Type '5' to access the database of cities
+        4.) Type '4' to access the database of cities
         """
     else:
         graphOption = ''
@@ -54,15 +52,15 @@ while True:
             print(city)
         continue
 
-    elif menuChoice =='3' and len(cityList)>0:
-        graph_data.graphPop()
-        continue
+    # elif menuChoice =='3' and len(cityList)>0:
+    #     graph_data.graphPop()
+    #     continue
 
-    elif menuChoice =='4' and len(cityList)>0:
+    elif menuChoice =='3' and len(cityList)>0:
         graph_data.graphPopDensity()
         continue
 
-    elif menuChoice =='5' and len(cityList)>0:
+    elif menuChoice =='4' and len(cityList)>0:
         dbLoop()
         continue
 

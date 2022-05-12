@@ -1,8 +1,8 @@
 # City-data
 
-This app allows the user to get data on cities using the Openweather API and webscraping from wikipedia. You enter a city and state and the openweather api searches for the temperature. If the input is valid and a temperature is returned, the program generates a wikipedia url. If the url is valid and has enough structure for scraping with BeautifulSoup, the program scrapes the information from the page and stores the info into a csv file (city_data.csv). 
+This app allows the user to get data on cities using the Openweather API and webscraping from wikipedia. You enter a city and state and then the openweather api searches for the temperature. If the input is valid and a temperature is returned, the program generates a wikipedia url. If the url is valid and has enough structure for scraping with BeautifulSoup, the program scrapes the information from the page and stores the info into a csv file (city_data.csv). 
 
-A command line app (main.py) and a GUI flask app (flask_app.py) are available and both are able to show graphs of estimated population and population density **(not all cities have this info)**, export info to csv, and export info to a db for persisting data. The program works best for American cities. 
+A command line app (main.py) and a GUI flask app (flask_app.py) are available and both are able to show graphs of estimated population and population density **(not all cities have this info)**. The info is exported into a csv (for each session) and also a SQLite database for data persistence across sessions. The program works best for American cities. 
 
 
 #
@@ -55,5 +55,3 @@ Example of main.py (click image for better quality gif)
 
 #
 
-# Glitches
-* In the Flask app, some browsers (i.e. MS Edge) may not always present the updated csv file for download from the link provided despite use of send_file(cache_timeout). However, the updated .csv file will be available in /city_data.csv
