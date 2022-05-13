@@ -7,14 +7,14 @@ import os
 
 #csv exports done per session ('city_data.csv') but also for exporting the persisting db ('city_data_db.csv')
 
-def exportToCSV(header, rowData, firstRun, runMode, filename):
-    with open(os.path.join(os.sys.path[0], filename), mode=runMode , encoding="utf-8-sig") as csv_file: #Tries to create csv in the same directory as .py files
+def export_to_csv(header, rowData, first_run, run_mode, filename):
+    with open(os.path.join(os.sys.path[0], filename), mode=run_mode , encoding="utf-8-sig") as csv_file: #Tries to create csv in the same directory as .py files
         linewriter = csv.writer(csv_file, lineterminator='\n')
-        if firstRun == True: # prints header info if it is running for the first time
+        if first_run == True: # prints header info if it is running for the first time
             linewriter.writerow(header) 
-            firstRun = False
-            runMode = 'a'
+            first_run = False
+            run_mode = 'a'
         linewriter.writerow(rowData) 
 
-    return firstRun, runMode
+    return first_run, run_mode
         

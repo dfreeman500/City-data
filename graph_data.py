@@ -4,11 +4,11 @@ import os
 
 
 # DRY - have pop and popDensity send here to graph
-def graphIt():
+def graph_it():
     pass
 
 #allows cleaning of data to be used by main (matplotlib) and flask_app (Bokeh)
-def cleanPopInput(population):
+def clean_pop_input(population):
     new_population = [str(i).replace(',', '').replace('nan','0') for i in population] #replace commas with '' and nan with 0
     for x in range(0,len(new_population)):
         if population[x] == '':
@@ -18,11 +18,11 @@ def cleanPopInput(population):
     return new_population
 
 #Graphs the population
-def graphPop():
+def graph_pop():
     data = pandas.read_csv(os.path.join(os.sys.path[0], 'city_data.csv'))
     cities = data.City.tolist()
     population = data.Estimated_Population.tolist()
-    new_population = cleanPopInput(population)
+    new_population = clean_pop_input(population)
     x_pos = [i for i, _ in enumerate(cities)]
     plt.bar(x_pos, new_population, color='green')
     plt.xlabel("Cities")
@@ -33,7 +33,7 @@ def graphPop():
     plt.show()
 
 #allows cleaning of data to be used by main (matplotlib) and flask_app (Bokeh)
-def cleanPopDensityInput(population_density):
+def clean_population_density_input(population_density):
     new_population_density = [str(i).replace(',', '').replace('nan','0').split('/') for i in population_density] #replace commas with '' and nan with 0
     population_density_numbers =[]
     for i in new_population_density:
@@ -42,11 +42,11 @@ def cleanPopDensityInput(population_density):
     return population_density_numbers
 
 #Graphs population density
-def graphPopDensity():
+def graph_pop_density():
     data = pandas.read_csv(os.path.join(os.sys.path[0], 'city_data.csv'))
     cities = data.City.tolist()
     population_density = data.Population_Density.tolist()
-    population_density_numbers = cleanPopDensityInput(population_density)
+    population_density_numbers = clean_population_density_input(population_density)
     x_pos = [i for i, _ in enumerate(cities)]
     plt.bar(x_pos, population_density_numbers, color='green')
     plt.xlabel("Cities")

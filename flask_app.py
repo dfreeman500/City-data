@@ -20,60 +20,60 @@ def index():
 
 @app.route('/city_info',methods=['POST']) 
 def city_info():
-    firstRun = True 
-    runMode = 'w'
-    cityOutput=[] #populated termLineHeader for single city 
-    cityList=[] #List of cities/inputs submitted by the user
-    cityBatch=[] #Array of cityOutputs
-    justHeader=[] #Header
+    first_run = True 
+    run_mode = 'w'
+    city_output=[] #populated termLineHeader for single city 
+    city_list=[] #List of cities/inputs submitted by the user
+    city_batch=[] #Array of cityOutputs
+    just_header=[] #Header
 
     data = dict(request.form) #gets flask data from the user input form and puts it in a dict
     for x in data.values():
-        cityList.append(x)
+        city_list.append(x)
 
-    tempDuplicateCheck=[]
-    duplicateEntries=[]
+    temp_duplicate_check=[]
+    duplicate_entries=[]
 
-    for city in cityList:
-        if city in tempDuplicateCheck:
-            duplicateEntries.append(city)
+    for city in city_list:
+        if city in temp_duplicate_check:
+            duplicate_entries.append(city)
         else:
-            tempDuplicateCheck.append(city)
-            firstRun, runMode, cityOutput, cityList, justHeader = order.orderOfOps(firstRun,runMode, menuChoice=city, cityList = cityList, requestor="flask_app")
-            cityBatch.append(cityOutput) #puts the termLineHeader for each city into a batch
+            temp_duplicate_check.append(city)
+            first_run, run_mode, city_output, city_list, just_header = order.orderOfOps(first_run,run_mode, menuChoice=city, cityList = city_list, requestor="flask_app")
+            city_batch.append(city_output) #puts the termLineHeader for each city into a batch
 
     # Gets header information for city_info page (particularly important if first city is not valid)
-    unpopulatedTLH = search_array.termLineHeader("NoCity", "72")
-    justHeader= [item[2] for item in unpopulatedTLH]
+    unpopulated_tlh = search_array.term_line_header("NoCity", "72")
+    just_header= [item[2] for item in unpopulated_tlh]
     
     # Determines which of the inputs are considered valid, blank, or had no return info so it can 
     # inform the user on city_info.html. Also, creates and cleans the estimatedpopulationList and 
     # populationDensityList for graphs while looping through cityBatch
 
-    validCitiesList = [] 
-    estimatedPopulationList = []
-    populationDensityList = []
+    valid_cities_list = [] 
+    estimated_population_list = []
+    population_density_list = []
 
-    for city in cityBatch:
+    for city in city_batch:
         if len(city)>0:
-            validCitiesList.append(city[0][4])
-            estimatedPopulationList.append(city[9][4])
-            populationDensityList.append(city[10][4])
+            valid_cities_list.append(city[0][4])
+            estimated_population_list.append(city[9][4])
+            population_density_list.append(city[10][4])
 
-    estimatedPopulationList = graph_data.cleanPopInput(estimatedPopulationList)
-    populationDensityList = graph_data.cleanPopDensityInput(populationDensityList)
+    estimated_population_list = graph_data.clean_pop_input(estimated_population_list)
+    population_density_list = graph_data.clean_population_density_input(population_density_list)
 
-    entriesWithNoReturn =[]
-    entriesWithNoText=[]
-    for item in cityList:       
-        if len(item)>0 and item.title() not in validCitiesList:
-            entriesWithNoReturn.append(item)
+    entries_with_no_return =[]
+    entries_with_no_text=[]
+    for item in city_list:       
+        if len(item)>0 and item.title() not in valid_cities_list:
+            entries_with_no_return.append(item)
         if len(item)<1:
-            entriesWithNoText.append(item)
+            entries_with_no_text.append(item)
     
 
 #Creating the Estimated Population, Population density Bokeh plots if there is at least one validCity
-    if len(validCitiesList)>0:
+    if len(valid_cities_list)>0:
 
         ## Wikipedia stopped giving estimated population in their tables
     
@@ -100,17 +100,17 @@ def city_info():
 
 
     #Creating the Population Density Bokeh plot
-        source = ColumnDataSource(dict(x=validCitiesList,y=populationDensityList))
+        source = ColumnDataSource(dict(x=valid_cities_list,y=population_density_list))
         x_label = "City"
         y_label = "Population Density per sq/mi"
         title = "Population Density"
-        plot2 = figure(plot_width=175*len(validCitiesList), plot_height=500, tools="save",
+        plot2 = figure(plot_width=175*len(valid_cities_list), plot_height=500, tools="save",
                 x_axis_label = x_label,
                 y_axis_label = y_label,
                 title=title,
                 x_minor_ticks=2,
                 x_range = source.data["x"],
-                y_range= ranges.Range1d(start=0,end=max(populationDensityList)+1000))
+                y_range= ranges.Range1d(start=0,end=max(population_density_list)+1000))
         plot2.xaxis.major_label_orientation = 45
         labels = LabelSet(x='x', y='y', text='y', level='glyph',            
             x_offset=-13.5, y_offset=0, source=source, render_mode='canvas')
@@ -128,15 +128,15 @@ def city_info():
     js_resources = INLINE.render_js()
     css_resources = INLINE.render_css()
 
-    return render_template("city_info.html", cityList=cityList, cityBatch = cityBatch, justHeader=justHeader, 
-        entriesWithNoReturn=entriesWithNoReturn, entriesWithNoText=entriesWithNoText, validCitiesList=validCitiesList, 
+    return render_template("city_info.html", city_list=city_list, city_batch = city_batch, just_header=just_header, 
+        entries_with_no_return=entries_with_no_return, entries_with_no_text=entries_with_no_text, valid_cities_list=valid_cities_list, 
         # plot_script1=script1, plot_div1=div1, 
         plot_script2=script2, plot_div2=div2, js_resources=js_resources, 
-        css_resources=css_resources, duplicateEntries=duplicateEntries, cache_timeout=0)
+        css_resources=css_resources, duplicate_entries=duplicate_entries, cache_timeout=0)
 
 #Download CSV file - cache_timout=0 prevents sending the cached file on repeat download
 @app.route('/download',methods=['GET']) 
-def downloadCSV ():
+def download_csv ():
     return send_file("city_data.csv", as_attachment=True, cache_timeout=-1) 
 
 
@@ -152,7 +152,7 @@ def downloadCSV ():
 # curl -X POST https://lyft-interview-test.glitch.me/test --data '{"string_to_cut": "iamyourlyftdriver"}' -H 'Content-Type: application/json'
 
 @app.route('/test', methods=['POST'])
-def post_route():
+def lyft_challenge():
     data = request.get_json() 
     return  {"return_string": data["string_to_cut"][2::3]}
 

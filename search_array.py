@@ -5,7 +5,7 @@
 #uncommenting variables/lines in the array will have effects in the db as well as for graphing (ex: changes index)
 
 
-def termLineHeader(city, temp):
+def term_line_header(city, temp):
     City=city
     Temp=temp
 
@@ -15,7 +15,7 @@ def termLineHeader(city, temp):
     Waterways, Elevation, Major_Airports, Primary_Aiport, Secondary_Airports =["","","","",""] 
     Airports, Rapid_Transit, Time_Zone  = ["","",""] 
 
-    termLineHeader = [ 
+    term_line_header = [ 
         ["City", "", "City", "skip", City],
         ["Temp", "Temp is", "Temp", "skip", Temp ],
         ["Mayor", "The Mayor is", "Mayor", "other", Mayor],
@@ -46,4 +46,4 @@ def termLineHeader(city, temp):
         ["Time", "The Time zone is ", "Time_Zone", "other", Time_Zone],
     ] 
 
-    return termLineHeader
+    return term_line_header

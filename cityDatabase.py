@@ -14,20 +14,20 @@ end="\033[0m"
 
 
 
-def dbEntry(headerinfo, rowData):
+def db_entry(headerinfo, rowData):
 
     #Builds table columns based on headerinfo
-    tableCreate = ""
+    table_create = ""
     for x in range(len(headerinfo)):
-        tableCreate += headerinfo[x] +" text"
+        table_create += headerinfo[x] +" text"
         if x< len(headerinfo)-1:
-            tableCreate+=", "
+            table_create+=", "
 
     #connect to database
     conn = sqlite3.connect("cityDatabase.db")
     #creates cursor
     cursor = conn.cursor()
-    cursor.execute("""CREATE TABLE IF NOT EXISTS cityInfo ({})""".format(tableCreate))
+    cursor.execute("""CREATE TABLE IF NOT EXISTS cityInfo ({})""".format(table_create))
     cursor.execute("INSERT INTO cityInfo VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",( rowData[0],rowData[1],rowData[2],
             rowData[3], rowData[4],rowData[5], rowData[6], rowData[7], rowData[8], rowData[9], rowData[10], 
             rowData[11], rowData[12], rowData[13],rowData[14]))
@@ -37,7 +37,7 @@ def dbEntry(headerinfo, rowData):
     conn.close()
 
 
-def dbDisplay():
+def db_display():
     print(yellow +"*"*100 +end)    
     print(red +"*"*100 +end)    
 
@@ -66,50 +66,50 @@ def dbDisplay():
     return names, records
 
 
-def dbEdit():
-    dbDisplay()
+def db_edit():
+    db_display()
     try:
-        recordItem = int(input("     Which record(rowid) would you like to update? "))
+        record_item = int(input("     Which record(rowid) would you like to update? "))
         conn = sqlite3.connect("cityDatabase.db")
         cursor = conn.cursor()
-        setItem = input("     Which item in the record would you like to set? ex: 'City', 'Area_Code' --> ")
-        updateItem = input("     What would you like to set the new item to be? ")
+        set_item = input("     Which item in the record would you like to set? ex: 'City', 'Area_Code' --> ")
+        update_item = input("     What would you like to set the new item to be? ")
 
         conn = sqlite3.connect("cityDatabase.db")
         cursor = conn.cursor()
-        cursor.execute("UPDATE cityInfo SET {} = '{}' WHERE rowid = {}".format(setItem, updateItem, recordItem))
+        cursor.execute("UPDATE cityInfo SET {} = '{}' WHERE rowid = {}".format(set_item, update_item, record_item))
         conn.commit()
         conn.close()
-        dbDisplay()
+        db_display()
     except ValueError as err:
         print(red, "     Please only enter an integer that corresponds to the record: ", err, end)
     except sqlite3.OperationalError as err:
-        print(red, "     Please enter the column name exactly (ex: 'Total_Population'). Item {} not edited. ".format(recordItem), end)
+        print(red, "     Please enter the column name exactly (ex: 'Total_Population'). Item {} not edited. ".format(record_item), end)
 
 
 
-def dbDelete():
-    dbDisplay()
+def db_delete():
+    db_display()
     try:
-        userInput = int(input("     Which record (rowid) would you like to delete? "))
+        user_input = int(input("     Which record (rowid) would you like to delete? "))
         conn = sqlite3.connect("cityDatabase.db")
         cursor = conn.cursor()
-        cursor.execute("DELETE from cityInfo WHERE rowid = {}".format(userInput))
+        cursor.execute("DELETE from cityInfo WHERE rowid = {}".format(user_input))
         conn.commit()
         conn.close()
-        dbDisplay()
+        db_display()
     except ValueError as err:
         print(red, "     Please only enter an integer that corresponds to the record: ", err, end)
 
 def csv():
-    names, records = dbDisplay()
-    firstRun=True
-    runMode='w'
-    userInput = input("     Type 'y' to create a new csv file with all records currently in the db (any other character escapes):")
-    if userInput.lower()=='y':
+    names, records = db_display()
+    first_run=True
+    run_mode='w'
+    user_input = input("     Type 'y' to create a new csv file with all records currently in the db (any other character escapes):")
+    if user_input.lower()=='y':
         for record in records:
             try:
-                firstRun, runMode = csv_export.exportToCSV(names, record, firstRun, runMode, filename='city_data_db.csv') # runs the csv exporter and gives/gets info on mode and firstRun
+                first_run, run_mode = csv_export.export_to_csv(names, record, first_run, run_mode, filename='city_data_db.csv') # runs the csv exporter and gives/gets info on mode and firstRun
             except PermissionError as err:
                 print(red + """
                 
@@ -121,16 +121,16 @@ def csv():
         pass    
 
 
-def dbLoop():
+def db_loop():
     while True:
-        userInput = input(white+"         What would you like to do with the database: 'q' for quit, 's' to show, 'd' for delete a record, 'e' to edit a record, 'csv' to export the db to csv. ")
-        if userInput.lower()=='q':
+        user_input = input(white+"         What would you like to do with the database: 'q' for quit, 's' to show, 'd' for delete a record, 'e' to edit a record, 'csv' to export the db to csv. ")
+        if user_input.lower()=='q':
             break
-        elif userInput.lower()=='s':
-            dbDisplay()
-        elif userInput.lower()=='d':
-            dbDelete()
-        elif userInput.lower()=='e':
-            dbEdit()
-        elif userInput.lower()=='csv':
+        elif user_input.lower()=='s':
+            db_display()
+        elif user_input.lower()=='d':
+            db_delete()
+        elif user_input.lower()=='e':
+            db_edit()
+        elif user_input.lower()=='csv':
             csv()

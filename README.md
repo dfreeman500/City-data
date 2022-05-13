@@ -13,7 +13,7 @@
 # Instructions:
 
 1. **Clone the repo**
-2. **Create an api.py file in the main directory and copy and paste the openWeatherApi variable (ex: ' openWeatherApi = "abc123" ') that is given to you into the file and save.**
+2. **Create an api.py file in the main directory and copy and paste the openWeatherApi variable (ex: ' OPEN_WEATHER_API = "abc123" ') that is given to you into the file and save.**
 3. **pip install -r requirements.txt**
 4. Run **main.py** for a command line program
 
@@ -42,7 +42,7 @@
 
 
 **Example of flask_app.py (click image for better quality gif)**
-![flask_app.py](images/citydata_gif_2.gif) 
+![flask_app.py](images/flask_app.gif) 
 
 
 

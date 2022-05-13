@@ -8,30 +8,30 @@
 {{ super() }}
 
 <div>
-    <h4 style="color: blue">{{cityList|length  }} input
+    <h4 style="color: blue">{{city_list|length  }} input
         field(s) were requested</h4>
-    {% if entriesWithNoReturn|length > 0 %}
-    <h4 style="color:red">{{ entriesWithNoReturn|length }} input(s) did not return a result: {{ entriesWithNoReturn }}
+    {% if entries_with_no_return|length > 0 %}
+    <h4 style="color:red">{{ entries_with_no_return|length }} input(s) did not return a result: {{ entries_with_no_return }}
     </h4>
     {% endif %}
-    {% if entriesWithNoText|length > 0 %}
-    <h4 style="color:red">{{ entriesWithNoText|length }} input field(s) were blank</h4>
+    {% if entries_with_no_text|length > 0 %}
+    <h4 style="color:red">{{ entries_with_no_text |length }} input field(s) were blank</h4>
     {% endif %}
-    {% if duplicateEntries|length > 0 %}
-    <h4 style="color:red">{{ duplicateEntries|length }} were duplicate entries {{ duplicateEntries }}
+    {% if duplicate_entries|length > 0 %}
+    <h4 style="color:red">{{ duplicate_entries|length }} were duplicate entries {{ duplicate_entries }}
     </h4>
     {% endif %}
-    <h4 style="color: blue">{{validCitiesList|length}} result(s) were returned below</h4>
+    <h4 style="color: blue">{{valid_cities_list|length}} result(s) were returned below</h4>
 </div>
 
 <table style="margin-left: 15px;">
     <tr style="color: green; font-weight: bold;">
-        {% for item in justHeader %}
+        {% for item in just_header %}
         <th style=" border: 1px solid black;">{{ item }}</th>
         {% endfor %}
     </tr>
     <tr>
-        {% for city in cityBatch %}
+        {% for city in city_batch %}
         {% for line in city %}
         <td style=" border: 1px solid blue;">{{ line[4] }}</td>
         {% endfor %}
@@ -52,7 +52,7 @@
 <p></p>
 <p>
     <a href="/">Go back to the index page</a>
-    {% if validCitiesList|length > 0 %}
+    {% if valid_cities_list|length > 0 %}
     <a href="/download">Download the csv file with the city data</a>
     {% endif %}
 </p>
