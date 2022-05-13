@@ -16,6 +16,10 @@ Example of main.py (click image for better quality gif)
 
 
 #
+Lyft Challenge using Git Bash  (click image for better quality gif)
+![Lyft Challenge](images/Lyft_challenge.gif) 
+
+#
 # Instructions:
 
 1. **Clone the repo**
