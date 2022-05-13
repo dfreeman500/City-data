@@ -2,7 +2,7 @@
 
 This app allows the user to get data on cities using the Openweather API and webscraping from wikipedia. You enter a city and state and then the openweather api searches for the temperature. If the input is valid and a temperature is returned, the program generates a wikipedia url. If the url is valid and has enough structure for scraping with BeautifulSoup, the program scrapes the information from the page and stores the info into a csv file (city_data.csv). 
 
-A command line app (main.py) and a GUI flask app (flask_app.py) are available and both are able to show graphs of estimated population and population density **(not all cities have this info)**. The info is exported into a csv (for each session) and also a SQLite database for data persistence across sessions. The program works best for American cities. 
+A GUI flask app (flask_app.py) and command line app (main.py) are available and both are have the ability to show a graph of population density **(not all cities have this info)**. The info is exported into a csv (for each session) and also a SQLite database for data persistence across sessions. You can read, update, and delete the entries from within the CLI. The program works best for American cities. 
 
 
 #
@@ -25,6 +25,13 @@ Example of main.py (click image for better quality gif)
    or
 
     run **flask_app.py** for GUI and to run batches with some autosuggestions. (Browser should automatically open to http://localhost:5000/)
+
+    For the Lyft challenge, enter the following in the command line after running flask_app.py:
+        curl -X POST localhost:5000/test --data '{"string_to_cut": "iamyourlyftdriver"}' -H 'Content-Type: application/json'
+
+
+
+
 
     * Program written in Python 3.8.6
 
