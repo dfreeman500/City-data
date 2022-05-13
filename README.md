@@ -27,7 +27,7 @@
 
 #
 **Lyft Challenge using Git Bash  (click image for better quality gif)**
-![Lyft Challenge](images/lyft_challenge.gif) 
+![Lyft Challenge](images/Lyft_challenge.gif) 
 
 
 
