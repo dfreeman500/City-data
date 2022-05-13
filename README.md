@@ -1,10 +1,10 @@
 # City-data
 
-This app allows the user to get data on cities using the Openweather API and webscraping from wikipedia. You enter a city and state and then the openweather api searches for the temperature. If the input is valid and a temperature is returned, the program generates a wikipedia url. If the url is valid and has enough structure for scraping with BeautifulSoup, the program scrapes the information from the page and stores the info into a csv file (city_data.csv). 
+* This app allows the user to get data on cities using the Openweather API and webscraping from wikipedia. You enter a city and state and then the openweather api searches for the temperature. If the input is valid and a temperature is returned, the program generates a wikipedia url. If the url is valid and has enough structure for scraping with BeautifulSoup, the program scrapes the information from the page and shows you some data. 
 
-A GUI flask app (flask_app.py) and command line app (main.py) are available and both are have the ability to show a graph of population density **(not all cities have this info)**. The info is exported into a csv (for each session) and also a SQLite database for data persistence across sessions. You can read, update, and delete the entries from within the CLI. The program works best for American cities. 
+* A GUI flask app (flask_app.py) and command line app (main.py) are available and both  have the ability to show a graph of population density **(not all cities have this info)**. The data is exported into a csv (for each session) and also a SQLite database for data persistence across sessions. You can read, update, and delete the entries from within the CLI. The program works best for American cities. 
 
-The Lyft challenge was also added to the flask_app.py simply because this project included a web app. The Lyft challenge code does not need the api to run.
+* The Lyft challenge was also added to the flask_app.py simply because this project included a web app. The Lyft challenge code does not need the OpenWeather api to run.
 
 #
 Example of flask_app.py (click image for better quality gif)
@@ -12,7 +12,7 @@ Example of flask_app.py (click image for better quality gif)
 
 #
 Example of main.py (click image for better quality gif)
-![main.py](images/citydata_gif_3.gif) 
+![main.py](images/citi-data_cli.gif) 
 
 
 #
@@ -38,7 +38,7 @@ Lyft Challenge using Git Bash  (click image for better quality gif)
 
 
 
-* Program written in Python 3.8.6
+* Program written in Python 3.8
 
 #
 
