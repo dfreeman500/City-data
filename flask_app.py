@@ -3,6 +3,7 @@ import graph_data
 import order
 import search_array
 import webbrowser
+import json
 
 from bokeh.embed import components
 from bokeh.plotting import figure
@@ -137,6 +138,24 @@ def city_info():
 @app.route('/download',methods=['GET']) 
 def downloadCSV ():
     return send_file("city_data.csv", as_attachment=True, cache_timeout=-1) 
+
+
+
+### LYFT CHALLENGE ####
+
+#write a small web application in one of the above languages (Python/Ruby/Javascript). 
+# The application only needs to do the following:
+#Accept a POST request to the route “/test”, which accepts one argument “string_to_cut”
+#Return a JSON object with the key “return_string” and a string containing every third letter from the original string
+#(e.g.) If you POST {"string_to_cut": "iamyourlyftdriver"}, it will return: {"return_string": "muydv"}.
+#Note: To see expected behavior you can test against a current working example with the command: 
+# curl -X POST https://lyft-interview-test.glitch.me/test --data '{"string_to_cut": "iamyourlyftdriver"}' -H 'Content-Type: application/json'
+
+@app.route('/test', methods=['POST'])
+def post_route():
+    data = request.get_json() 
+    return  {"return_string": data["string_to_cut"][2::3]}
+
 
 
 if __name__ == "__main__":
