@@ -6,18 +6,8 @@
 
 * The Lyft challenge was also added to the flask_app.py simply because this project included a web app. The Lyft challenge code does not need the OpenWeather api to run.
 
-#
-Example of flask_app.py (click image for better quality gif)
-![flash_app.py](images/citydata_gif_2.gif) 
-
-#
-Example of main.py (click image for better quality gif)
-![main.py](images/citi-data_cli.gif) 
 
 
-#
-Lyft Challenge using Git Bash  (click image for better quality gif)
-![Lyft Challenge](images/Lyft_challenge.gif) 
 
 #
 # Instructions:
@@ -35,21 +25,33 @@ Lyft Challenge using Git Bash  (click image for better quality gif)
         curl -X POST localhost:5000/test --data '{"string_to_cut": "iamyourlyftdriver"}' -H 'Content-Type: application/json'
 
 
+#
+**Lyft Challenge using Git Bash  (click image for better quality gif)**
+![Lyft Challenge](images/Lyft_challenge.gif) 
 
 
 
-* Program written in Python 3.8
+
 
 #
 
 # Features:
 
 * Flask App:
-    flask_app.py allows for entry and lookup of up to 20 cities in a webform at a time. Autosuggestions are provided for cities with high population levels in the US. Obvious duplicates are excluded from results. Graphs (via **bokeh**) are provided for population density and estimated population if that information is available. A city_data.csv link is provided for download with the information just obtained about the different cities in that session. Each city and resulting information is also placed in cityDatabase.db. This **SQLite db** can be edited in the CLI mode. 
+    flask_app.py allows for entry and lookup of up to 20 cities in a webform at a time. Autosuggestions are provided for cities with high population levels in the US via javascript. Obvious duplicates are excluded from results. A graph (via **bokeh**) is provided for population density if that information is available. A city_data.csv link is provided for download with the information just obtained about the different cities in that session. Each city and resulting information is also placed in cityDatabase.db. This **SQLite db** can be edited in the CLI mode. 
+
+
+**Example of flask_app.py (click image for better quality gif)**
+![flask_app.py](images/citydata_gif_2.gif) 
+
+
 
 * CLI:
-    main.py allows for individual entry of cities. Each city that returns valid information will be added to city_data.csv (obvious duplicates are excluded) and cityDatabase.db . The city_data.csv is created for each new session. The cityDatbase.db persists across sessions and also includes cities obtained from the flask app. In order to view the db, delete records, edit records, and export to a csv, at least one valid city most be entered via the CLI. One reason to edit a record could be to add "Demonym" information for a city in which wikipedia doesn't have this info. Graphs (via **matplotlib**) are possible for population density and estimated population.  
+    main.py allows for individual entry of cities. Each city that returns valid information will be added to city_data.csv (obvious duplicates are excluded) and cityDatabase.db . The city_data.csv is created for each new session. The cityDatbase.db persists across sessions and also includes cities obtained from the flask app. In order to view the db, delete records, edit records, and export to a csv, at least one valid city most be entered via the CLI. One reason to edit a record could be to add "Demonym" information for a city in which wikipedia doesn't have this info. A graph (via **matplotlib**) is possible for population density.  
 
+
+**Example of main.py (click image for better quality gif)**
+![main.py](images/citi-data_cli.gif) 
 
 
 #
