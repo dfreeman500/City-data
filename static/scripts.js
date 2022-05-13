@@ -14,6 +14,7 @@ function buildCityInputForm(numberOfCities) {
     cityInputs.innerHTML = html;  //injects the html into the div
 }
 
+//TODO add ability to hit return??
 // Responds to click event and checks validates input
 document.getElementById("createCityInputs").onclick = function () {
     numberOfCities = document.getElementById("numberOfCities").value

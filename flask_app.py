@@ -150,12 +150,12 @@ def download_csv ():
 #(e.g.) If you POST {"string_to_cut": "iamyourlyftdriver"}, it will return: {"return_string": "muydv"}.
 #Note: To see expected behavior you can test against a current working example with the command: 
 # curl -X POST https://lyft-interview-test.glitch.me/test --data '{"string_to_cut": "iamyourlyftdriver"}' -H 'Content-Type: application/json'
+# For this app post: curl -X POST localhost:5000/test --data '{"string_to_cut": "iamyourlyftdriver"}' -H 'Content-Type: application/json'
 
 @app.route('/test', methods=['POST'])
 def lyft_challenge():
     data = request.get_json() 
     return  {"return_string": data["string_to_cut"][2::3]}
-
 
 
 if __name__ == "__main__":
