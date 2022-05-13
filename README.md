@@ -4,6 +4,7 @@ This app allows the user to get data on cities using the Openweather API and web
 
 A GUI flask app (flask_app.py) and command line app (main.py) are available and both are have the ability to show a graph of population density **(not all cities have this info)**. The info is exported into a csv (for each session) and also a SQLite database for data persistence across sessions. You can read, update, and delete the entries from within the CLI. The program works best for American cities. 
 
+The Lyft challenge was also added to the flask_app.py simply because this project included a web app. The Lyft challenge code does not need the api to run.
 
 #
 Example of flask_app.py (click image for better quality gif)
@@ -33,7 +34,7 @@ Example of main.py (click image for better quality gif)
 
 
 
-    * Program written in Python 3.8.6
+* Program written in Python 3.8.6
 
 #
 
