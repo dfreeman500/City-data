@@ -56,9 +56,11 @@
 
 #
 
-# Future directions: 
+# Possible Future directions: 
 * ability to take zip codes
 * convert state abbreviations to full state names
+* Update wikipedia search criteria for city tables
+
 
 #
 
