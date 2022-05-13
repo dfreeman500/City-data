@@ -1,10 +1,10 @@
 # City-data
 
-* This app allows the user to get data on cities using the Openweather API and webscraping from wikipedia. You enter a city and state and then the openweather api searches for the temperature. If the input is valid and a temperature is returned, the program generates a wikipedia url. If the url is valid and has enough structure for scraping with BeautifulSoup, the program scrapes the information from the page and shows you some data. 
+* This app allows the user to get data on cities using the openweathermap.org API and webscraping from wikipedia. You enter a city and state and then the openweathermap.org api searches for the temperature. If the input is valid and a temperature is returned, the program generates a wikipedia url. If the url is valid and has enough structure for scraping with BeautifulSoup, the program scrapes the information from the page and shows you some data. 
 
 * A GUI flask app (flask_app.py) and command line app (main.py) are available and both  have the ability to show a graph of population density. **Not all cities have the same information and wikipedia recently changed some of the structure of its city webpages - this results in some blank information.**. The data is exported into a csv (for each session) and also a SQLite database for data persistence across sessions. You can read, update, and delete the entries from within the CLI. The program works best for American cities. The flask app and CLI basically utilize the same order of operations (order.py) for their similar features.
 
-* The Lyft challenge was also added to the flask_app.py simply because this project included a web app. The Lyft challenge code does not need the OpenWeather api to run.
+* The Lyft challenge was also added to the flask_app.py simply because this project included a web app. The Lyft challenge code does not need the openweathermap.org api to run.
 
 
 
@@ -13,7 +13,7 @@
 # Instructions:
 
 1. **Clone the repo**
-2. **Create an api.py file in the main directory and copy and paste the openWeatherApi variable (ex: ' OPEN_WEATHER_API = "abc123" ') that is given to you into the file and save.**
+2. **Create an api.py file in the main directory and copy and paste the openweathermap.org variable (ex: ' OPEN_WEATHER_API = "abc123" ') that is given to you into the file and save.**
 3. **pip install -r requirements.txt**
 4. Run **main.py** for a command line program
 
