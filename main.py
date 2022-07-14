@@ -71,7 +71,7 @@ while True:
         if collapsed_input in collapsed_list:
             print("{} was already entered - it was not added to the csv".format(menu_choice))
         else:
-            first_run, run_mode, menu_choice, city_list, just_header = order.orderOfOps(first_run, run_mode, menu_choice, city_list, requestor="main")
+            first_run, run_mode, menu_choice, city_list, just_header = order.order_of_ops(first_run, run_mode, menu_choice, city_list, requestor="main")
         
 
         
