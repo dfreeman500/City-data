@@ -24,7 +24,7 @@ def db_entry(headerinfo, rowData):
             table_create+=", "
 
     #connect to database
-    conn = sqlite3.connect("cityDatabase.db")
+    conn = sqlite3.connect("CITY.db")
     #creates cursor
     cursor = conn.cursor()
     cursor.execute("""CREATE TABLE IF NOT EXISTS cityInfo ({})""".format(table_create))
@@ -42,7 +42,7 @@ def db_display():
     print(red +"*"*100 +end)    
 
 
-    conn = sqlite3.connect("cityDatabase.db")
+    conn = sqlite3.connect("CITY.db")
     #creates cursor
     cursor = conn.cursor()
     #prints header info then each rowid
@@ -70,12 +70,12 @@ def db_edit():
     db_display()
     try:
         record_item = int(input("     Which record(rowid) would you like to update? "))
-        conn = sqlite3.connect("cityDatabase.db")
+        conn = sqlite3.connect("CITY.db")
         cursor = conn.cursor()
         set_item = input("     Which item in the record would you like to set? ex: 'City', 'Area_Code' --> ")
         update_item = input("     What would you like to set the new item to be? ")
 
-        conn = sqlite3.connect("cityDatabase.db")
+        conn = sqlite3.connect("CITY.db")
         cursor = conn.cursor()
         cursor.execute("UPDATE cityInfo SET {} = '{}' WHERE rowid = {}".format(set_item, update_item, record_item))
         conn.commit()
@@ -92,7 +92,7 @@ def db_delete():
     db_display()
     try:
         user_input = int(input("     Which record (rowid) would you like to delete? "))
-        conn = sqlite3.connect("cityDatabase.db")
+        conn = sqlite3.connect("CITY.db")
         cursor = conn.cursor()
         cursor.execute("DELETE from cityInfo WHERE rowid = {}".format(user_input))
         conn.commit()

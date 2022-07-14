@@ -1,6 +1,6 @@
 import graph_data
 import order
-from cityDatabase import db_loop
+from city_database import db_loop
 
 red = "\033[0;31m"
 yellow="\033[0;33m"

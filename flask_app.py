@@ -39,7 +39,7 @@ def city_info():
             duplicate_entries.append(city)
         else:
             temp_duplicate_check.append(city)
-            first_run, run_mode, city_output, city_list, just_header = order.orderOfOps(first_run,run_mode, menuChoice=city, cityList = city_list, requestor="flask_app")
+            first_run, run_mode, city_output, city_list, just_header = order.order_of_ops(first_run,run_mode, menuChoice=city, cityList = city_list, requestor="flask_app")
             city_batch.append(city_output) #puts the termLineHeader for each city into a batch
 
     # Gets header information for city_info page (particularly important if first city is not valid)

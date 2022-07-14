@@ -1,13 +1,13 @@
 from city import CityInfo
 import csv_export
-from cityDatabase import db_entry
+from city_database import db_entry
 
 red = "\033[0;31m"
 end="\033[0m"
 
 
 #order of operations for both main.py and flask_app.py
-def orderOfOps(firstRun,runMode, menuChoice, cityList, requestor):
+def order_of_ops(firstRun,runMode, menuChoice, cityList, requestor):
     cityOutput=[]
     justHeader=[]
     city = CityInfo(menuChoice.title()) #Creates instance of CityInfo class
