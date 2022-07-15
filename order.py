@@ -7,15 +7,15 @@ end="\033[0m"
 
 
 #order of operations for both main.py and flask_app.py
-def order_of_ops(firstRun,runMode, menuChoice, cityList, requestor):
+def order_of_ops(first_run,run_mode, menu_choice, city_list, requestor):
     cityOutput=[]
     justHeader=[]
-    city = CityInfo(menuChoice.title()) #Creates instance of CityInfo class
+    city = CityInfo(menu_choice.title()) #Creates instance of CityInfo class
     responses = city.validate_by_weather_api()  #returns [ response.status_code, cityState, response.json()]
 
     if responses[0] != 200:
         print(red+ "You entered '{}' but that returned an error {}. You may have misspelled the city, state -  Please try again. Please use the format of 'Louisville, Kentucky'".format(responses[1], responses[0]) + end)
-        cityList
+        city_list
         cityOutput=[]
     else:
         try:
@@ -24,9 +24,9 @@ def order_of_ops(firstRun,runMode, menuChoice, cityList, requestor):
             names_of_columns = justHeader
             rowData = []
             rowData.extend([i[4] for i in cityOutput ])
-            firstRun, runMode = csv_export.export_to_csv(names_of_columns, rowData, firstRun, runMode, filename='city_data.csv') # runs the csv exporter and gives/gets info on mode and firstRun
+            first_run, run_mode = csv_export.export_to_csv(names_of_columns, rowData, first_run, run_mode, filename='city_data.csv') # runs the csv exporter and gives/gets info on mode and first_run
             if requestor =="main":
-                cityList.append(responses[1])
+                city_list.append(responses[1])
             db_entry(justHeader, rowData)
         except ValueError as err:
             print(red + str(err) + "There was value error in Main.py" + end)
@@ -50,4 +50,4 @@ def order_of_ops(firstRun,runMode, menuChoice, cityList, requestor):
             """ +end)
 
                 
-    return firstRun, runMode, cityOutput, cityList, justHeader
+    return first_run, run_mode, cityOutput, city_list, justHeader

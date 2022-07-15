@@ -109,7 +109,7 @@ def csv():
     if user_input.lower()=='y':
         for record in records:
             try:
-                first_run, run_mode = csv_export.export_to_csv(names, record, first_run, run_mode, filename='city_data_db.csv') # runs the csv exporter and gives/gets info on mode and firstRun
+                first_run, run_mode = csv_export.export_to_csv(names, record, first_run, run_mode, filename='city_data_db.csv') # runs the csv exporter and gives/gets info on mode and first_run
             except PermissionError as err:
                 print(red + """
                 

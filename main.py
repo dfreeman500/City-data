@@ -7,7 +7,7 @@ yellow="\033[0;33m"
 blue="\033[0;34m"
 end="\033[0m"
 
-# firstRun and runMode are for csv exporter so header is only exported the first time
+# first_run and run_mode are for csv exporter so header is only exported the first time
 first_run = True 
 run_mode = 'w'
 
@@ -52,7 +52,7 @@ while True:
             print(city)
         continue
 
-    # elif menuChoice =='3' and len(cityList)>0:
+    # elif menu_choice =='3' and len(city_list)>0:
     #     graph_data.graphPop()
     #     continue
 

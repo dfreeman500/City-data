@@ -3,7 +3,7 @@ import os
 
 #header - header for csv from item[2] from termLineHeader array
 #rowData - row data taken from item[4] from termLineHeader array
-#runMode - sets 'w' vs 'a' depending on the first run of export
+#run_mode - sets 'w' vs 'a' depending on the first run of export
 
 #csv exports done per session ('city_data.csv') but also for exporting the persisting db ('city_data_db.csv')
 
