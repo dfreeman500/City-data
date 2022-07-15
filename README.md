@@ -56,7 +56,7 @@
 ![flask_app.py](images/flask_app.gif) 
 
 **Example of Postman response to GET request **
-![postmanAPI](images/postman_API.png) 
+![postmanAPI](images/postman_API.png =250x250) 
 
 * CLI:
     main.py allows for individual entry of cities. Each city that returns valid information will be added to city_data.csv (obvious duplicates are excluded) and CITY.db . The city_data.csv is created for each new session. The cityDatbase.db persists across sessions and also includes cities obtained from the flask app. In order to view the db, delete records, edit records, and export to a csv, at least one valid city most be entered via the CLI. One reason to edit a record could be to add "Demonym" information for a city in which wikipedia doesn't have this info. A graph (via **matplotlib**) is possible for population density.  
