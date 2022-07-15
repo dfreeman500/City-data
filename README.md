@@ -38,7 +38,8 @@
 
 #
 **Lyft Challenge using Git Bash  (click image for better quality gif)**
-![Lyft Challenge](images/Lyft_challenge.gif) 
+<!-- ![Lyft Challenge](images/Lyft_challenge.gif)  -->
+<img src="images/Lyft_challenge.gif" width="700" >
 
 
 
@@ -53,18 +54,22 @@
 
 
 **Example of flask_app.py (click image for better quality gif)**
-![flask_app.py](images/flask_app.gif) 
+<!-- ![flask_app.py](images/flask_app.gif)  -->
+<img src="images/flask_app.gif" width="700" >
 
 **Example of Postman response to GET request **
-![postmanAPI](images/postman_API.png =250x250) 
+<!-- ![postmanAPI](images/postman_API.png)  -->
+
+<!-- ![Postman image] -->
+<img src="images/postman_API.png" width="700" >
 
 * CLI:
     main.py allows for individual entry of cities. Each city that returns valid information will be added to city_data.csv (obvious duplicates are excluded) and CITY.db . The city_data.csv is created for each new session. The cityDatbase.db persists across sessions and also includes cities obtained from the flask app. In order to view the db, delete records, edit records, and export to a csv, at least one valid city most be entered via the CLI. One reason to edit a record could be to add "Demonym" information for a city in which wikipedia doesn't have this info. A graph (via **matplotlib**) is possible for population density.  
 
 
 **Example of main.py (click image for better quality gif)**
-![main.py](images/citi-data_cli.gif) 
-
+<!-- ![main.py](images/citi-data_cli.gif)  -->
+<img src="images/citi-data_cli.gif" width="700" >
 
 #
 
