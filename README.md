@@ -1,8 +1,8 @@
 # City-data
 
-* This app allows the user to get data on cities using the openweathermap.org API and webscraping from wikipedia. You enter a city and state and then the openweathermap.org api searches for the temperature. If the input is valid and a temperature is returned, the program generates a wikipedia url. If the url is valid and has enough structure for scraping with BeautifulSoup, the program scrapes the information from the page and shows you some data. 
+* This app allows the user to get data on cities by consuming openweathermap.org API and webscraping from wikipedia. You enter a city and state and then the openweathermap.org api searches for the temperature. If the input is valid and a temperature is returned, the program generates a wikipedia url. If the url is valid and has enough structure for scraping with BeautifulSoup, the program scrapes the information from the page and shows you some data. 
 
-* A GUI flask app (flask_app.py) and command line app (main.py) are available and both  have the ability to show a graph of population density. **Not all cities have the same information and wikipedia recently changed some of the structure of its city webpages - this results in some blank information.**. The data is exported into a csv (for each session) and also a SQLite database for data persistence across sessions. You can read, update, and delete the entries from within the CLI. The program works best for American cities. 
+* A GUI flask app (flask_app.py) and command line app (main.py) are available and both have the ability to show a graph of population density. **Not all cities have the same information and wikipedia recently changed some of the structure of its city webpages - this results in some blank information.**. The data is exported into a csv (for each session) and also a SQLite database for data persistence across sessions. You can read, update, and delete the entries from within the CLI. The program works best for American cities. 
 
     While running flask_app.py, an api is also running which accepts a single city/state. So, for example in Postman you could run 
 
@@ -11,11 +11,7 @@
     which would return the city data for that particular city. 
 
 
-    The flask app and CLI basically utilize the same order of operations (order.py) for their similar features.
-
-
-
-* The Lyft challenge was also added to the flask_app.py simply because this project included a web app. The Lyft challenge code does not need the openweathermap.org api to run.
+    The flask app and CLI utilize the same order of operations (order.py) for their similar features.
 
 
 
@@ -30,19 +26,7 @@
 
    or
 
-    run **flask_app.py** for GUI and to run batches with some autosuggestions. (Browser should automatically open to http://localhost:5000/)
-
-    For the Lyft challenge, enter the following in the command line after running flask_app.py:
-        curl -X POST localhost:5000/test --data '{"string_to_cut": "iamyourlyftdriver"}' -H 'Content-Type: application/json'
-
-
-#
-**Lyft Challenge using Git Bash  (click image for better quality gif)**
-<!-- ![Lyft Challenge](images/Lyft_challenge.gif)  -->
-<img src="images/Lyft_challenge.gif" width="600" >
-
-
-
+   run **flask_app.py** for GUI and to run batches with some autosuggestions. (Browser should automatically open to http://localhost:5000/). While flask_app.py is running, it will accept a GET request to http://localhost:5000/\<city, state\> and will return a JSON object of the city's information. 
 
 
 #
@@ -55,21 +39,24 @@
 
 **Example of flask_app.py (click image for better quality gif)**
 <!-- ![flask_app.py](images/flask_app.gif)  -->
-<img src="images/flask_app.gif" width="600" >
+<img src="images/flask_app.gif" width="500" >
+
+
+     Running flask_app.py also opens up a GET route for an API and returns a JSON object (see below). This data is also stored in the sqlite database for viewing and editing with the CLI.
 
 **Example of Postman response to GET request **
 <!-- ![postmanAPI](images/postman_API.png)  -->
 
 <!-- ![Postman image] -->
-<img src="images/postman_API.png" width="600" >
+<img src="images/postman_API.png" width="500" >
 
 * CLI:
-    main.py allows for individual entry of cities. Each city that returns valid information will be added to city_data.csv (obvious duplicates are excluded) and CITY.db . The city_data.csv is created for each new session. The cityDatbase.db persists across sessions and also includes cities obtained from the flask app. In order to view the db, delete records, edit records, and export to a csv, at least one valid city most be entered via the CLI. One reason to edit a record could be to add "Demonym" information for a city in which wikipedia doesn't have this info. A graph (via **matplotlib**) is possible for population density.  
+    main.py allows for individual entry of cities. Each city that returns valid information will be added to city_data.csv (obvious duplicates are excluded) and CITY.db . The city_data.csv is created for each new session. The CITY.db persists across sessions and also includes cities obtained from the flask app and API GET requests. In order to view the db, delete records, edit records, and export to a csv, at least one valid city most be entered via the CLI. One reason to edit a record could be to add "Demonym" information for a city in which wikipedia doesn't have this info. A graph (via **matplotlib**) is possible for population density.  
 
 
 **Example of main.py (click image for better quality gif)**
 <!-- ![main.py](images/citi-data_cli.gif)  -->
-<img src="images/citi-data_cli.gif" width="600" >
+<img src="images/citi-data_cli.gif" width="500" >
 
 #
 
@@ -88,5 +75,3 @@
 
 #
 
-Other:
-1. Unit tests can be run with: python -m unittest test_flask_app.py
