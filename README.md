@@ -26,7 +26,7 @@
 
    or
 
-   run **flask_app.py** for GUI and to run batches with some autosuggestions. (Browser should automatically open to http://localhost:5000/). While flask_app.py is running, it will accept a GET request to http://localhost:5000/\<city, state\> and will return a JSON object of the city's information. 
+   run **flask_app.py** for GUI and to run batches with some autosuggestions. (Browser should automatically open to http://localhost:5000/). While flask_app.py is running, it will accept a GET request to http://localhost:5000/api/\<city, state\> and will return a JSON object of the city's information. 
 
 
 #
