@@ -1,9 +1,13 @@
+from collections import defaultdict
 from flask import (Flask, render_template, request, send_file, jsonify)
 import graph_data
 import order
 import search_array
 import webbrowser
 import json
+from markupsafe import Markup
+Markup('')
+
 
 from bokeh.embed import components
 from bokeh.plotting import figure
@@ -165,16 +169,30 @@ def lyft_challenge():
     data = request.get_json()
     return {"return_string": data["string_to_cut"][2::3]}
 
+## NO TIME LIMIT ON THIS SIMPLE CACHE!!!!
+api_cache = defaultdict(lambda: "Not Present")
+
 
 @app.route('/api/<city>', methods=['GET'])
 def api_route(city):
-    first_run, run_mode, menu_choice, city_list, just_header = order.order_of_ops(
-        first_run=True, run_mode='w', menu_choice=city, city_list=city, requestor="main")
+    if api_cache[city] == "Not Present":
+        first_run, run_mode, menu_choice, city_list, just_header = order.order_of_ops(
+            first_run=True, run_mode='w', menu_choice=city, city_list=city, requestor="main")
 
-    if len(menu_choice) == 0:
-        return "Please enter a valid entry of the form: city, state (ex: Louisville, Kentucky)", 400
+        returned_data = jsonify([{x[2]:x[4]} for x in menu_choice])
+        # print(city)
+        # print(menu_choice)
+        # print(api_cache[city])
+        # print(api_cache)
+
+        if len(menu_choice) == 0:
+            return "Please enter a valid entry of the form: city, state (ex: Louisville, Kentucky)", 400
+        else:
+            api_cache[city]=returned_data
+            return returned_data, 200
     else:
-        return jsonify([{x[2]:x[4]} for x in menu_choice]), 200
+        print("api is cached")
+        return api_cache[city], 203
 
 
 if __name__ == "__main__":
